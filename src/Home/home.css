@@ -1,0 +1,15 @@
+.container {
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slide{
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }

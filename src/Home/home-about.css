@@ -1,0 +1,105 @@
+.about-home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:90vh;
+}
+
+.about-container {
+    display: flex; /* Enables flexbox for centering */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    width: 100%; /* Matches the width of .about-home */
+    height: 90px;
+    position: sticky;
+    top: 100px;
+}
+
+.about {
+    padding: 30px;
+    position: relative;
+    width: 100%;
+    transition: all 0.5s ease-in-out; /* Smooth transition for height, width, and padding */
+}
+
+.about-greeting{
+    transition: all 0.5s ease-in-out; /* Smooth transition for text alignment, position, etc. */
+    text-align: left;
+    animation: bounceInRight 2s ease-in-out;
+}
+
+.about-introduction {
+    transition: all 0.5s ease-in-out; /* Smooth transition for text alignment, position, etc. */
+    text-align: left;
+    width: 90%;
+    animation: fadeInDown 2s  2s ease-in-out;
+    transform: scale(0);
+    animation-fill-mode: forwards;
+}
+
+.about-me {
+    text-align: right;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 120%;
+}
+
+.contact-method{
+    display: flex;
+    gap: 50px;
+    list-style: none;
+    margin-left: -30px;
+    color: #606060;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 1200px) {
+
+    .about-container {
+        padding-top: 150px;
+    }
+
+    .about {
+        height: 300px;
+        width: 1000px;
+        padding: 30px;
+    }
+
+    .about-greeting {
+        position: relative;
+        text-align: left;
+        scale: 2;
+        padding-left: 250px;
+        animation: bounceInRight 1.5s ease-in-out, 1s greetingZoomOut 1.7s;
+        animation-fill-mode: forwards ;
+    }
+
+    .about-introduction {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        width: 500px;
+        transform: scale(0);
+        animation: fadeInLeft 1s 1.5s ease-in-out;
+        animation-fill-mode: forwards;
+    }
+}
+
+@keyframes greetingZoomOut {
+    to {scale: 1; padding-left: 0px;}
+}
+
+
+
+
+
+
