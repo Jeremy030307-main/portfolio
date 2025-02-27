@@ -1,40 +1,19 @@
-.about-home{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height:90vh;
-}
-
 .about-container {
-    display: flex; /* Enables flexbox for centering */
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
-    width: 100%; /* Matches the width of .about-home */
-    height: 90px;
-    position: sticky;
-    top: 100px;
-}
-
-.about {
-    padding: 30px;
-    position: relative;
-    width: 100%;
     transition: all 0.5s ease-in-out; /* Smooth transition for height, width, and padding */
+    display: flex;
+    flex-direction: column;
 }
 
 .about-greeting{
-    transition: all 0.5s ease-in-out; /* Smooth transition for text alignment, position, etc. */
     text-align: left;
     animation: bounceInRight 2s ease-in-out;
 }
 
 .about-introduction {
-    transition: all 0.5s ease-in-out; /* Smooth transition for text alignment, position, etc. */
     text-align: left;
     width: 90%;
     animation: fadeInDown 2s  2s ease-in-out;
-    transform: scale(0);
-    animation-fill-mode: forwards;
+    z-index: -1;
 }
 
 .about-me {
@@ -60,38 +39,53 @@
   'opsz' 48
 }
 
-
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 1200px) {
 
     .about-container {
-        padding-top: 150px;
-    }
-
-    .about {
-        height: 300px;
+        flex-direction: row;
+        /* height: 450px; */
+        gap: 150px;
         width: 1000px;
-        padding: 30px;
     }
 
     .about-greeting {
-        position: relative;
         text-align: left;
-        scale: 2;
-        padding-left: 250px;
         animation: bounceInRight 1.5s ease-in-out, 1s greetingZoomOut 1.7s;
-        animation-fill-mode: forwards ;
+        flex-direction: column;
+        display: flex;
+        width: 400px;
     }
 
     .about-introduction {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
         width: 500px;
-        transform: scale(0);
-        animation: fadeInLeft 1s 1.5s ease-in-out;
-        animation-fill-mode: forwards;
+        animation: fadeInLeft 1s ease-in-out ;
+        display: flex;
+        flex-direction: column;
+        /* gap: 20px; */
+        justify-content: space-between;
     }
+
+    .about-introduction.animated {
+        opacity: 1;
+      }
+
+    .about-greeting-empty-contianer-1{
+        flex: 1;
+    }
+
+    .about-gretting-hello-container{
+        flex: 1;
+        margin: 0;
+        display: flex;
+        align-items:end;
+        justify-content: baseline;
+    }
+
+    .about-greeting-empty-contianer-2{
+        flex: 1
+    }
+
 }
 
 @keyframes greetingZoomOut {

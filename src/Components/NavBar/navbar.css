@@ -8,6 +8,7 @@
     z-index: 1;
     width: 100%;
     box-sizing:border-box ;
+    top: 0;
 }
 
 .nav-logo{
@@ -96,8 +97,13 @@
     .navbar{
         display: flex;
         justify-content:first baseline;
-        padding: 50px 80px 10px 80px;
-        height: 80px;
+        padding: 30px 80px 20px 80px;
+        height: 70px;
+    }
+
+    .navbar.scrolled{
+        background-color: #f0f0f0;
+        box-shadow: 0 1px 5px #707070;
     }
 
     .nav-logo{
@@ -107,7 +113,7 @@
     }
     
     .nav-logo img{
-        height: 40px;
+        height: 30px;
     }
     
     .nav-menu{

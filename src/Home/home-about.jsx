@@ -1,45 +1,61 @@
 import './home-about.css';
 import 'animate.css';
-import { useScroll, useTransform, motion } from 'motion/react';
-import { useRef } from 'react';
+import side_head from '../Components/Assets/side-head.png'
 
 const HomeAbout = () => {
 
-    const ref = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["end end", "end start"]
-    });
-
-
-    const scale = useTransform(scrollYProgress, [0.5,0.2], [0.8, 1])
-
     return (
-        <>
-        <motion.div ref={ref} className='about-home'>
-            <motion.div style={{scale}} className='about-container' >
-                <div className='about'>
-                    <div className="about-greeting">
-                        <h1><span>Hello,</span><br/><span>I'm Jeremy.</span></h1>
-                    </div>
+        <div className='about-container' >
 
-                    <div className="about-introduction">
-                        <h2>
-                        A senior-year software engineering student who trying to specialize in full stack development. 
-                        </h2>
-                        
-                        <ul className='contact-method'>
-                            <li><i className="fa-brands fa-github fa-2xl"></i></li>
-                            <li><i className="fa-brands fa-linkedin fa-2xl"></i></li>
-                            <li><i className="fa-solid fa-envelope fa-2xl"></i></li>
-                        </ul>
+            <div  className="about-greeting">
+                <div className='about-greeting-empty-contianer-1' 
+                    style={{
+                        display: "flex", 
+                        justifyContent: "center", 
+                        alignItems: "center", 
+                        overflow: "hidden"
+                    }}
+                >
+                    <img 
+                        src={side_head} 
+                        alt="Side Head"
+                        style={{
+                            width: "100%", 
+                            height: "auto", 
+                            maxWidth: "100%", 
+                            maxHeight: "100%", 
+                            objectFit: "contain"
+                        }}
+                    />
+                </div>  
+            </div>
+            
 
-                        <p className='about-me'>About Me &gt; </p>
-                    </div>
-                </div>              
-            </motion.div>
-        </motion.div>
-        </>
+            <div  className="about-introduction">
+
+                <div className='about-greeting-empty-contianer-2'>
+                    <h1 className='about-gretting-hello-container'>Hello World,<br/>I'm Teng.</h1>
+                </div>
+                
+                <div className='about-introduction-content'>
+
+                    <h2>
+                    A senior-year software engineering student who trying to specialize in full stack development. 
+                    </h2>
+                    
+                    <ul className='contact-method'>
+                        <li><i className="fa-brands fa-github fa-2xl"></i></li>
+                        <li><i className="fa-brands fa-linkedin fa-2xl"></i></li>
+                        <li><i className="fa-solid fa-envelope fa-2xl"></i></li>
+                    </ul>
+
+                </div>
+
+                <p className='about-me'>About Me &gt; </p>
+
+            </div>
+        </div>  
+
     )
 }
 

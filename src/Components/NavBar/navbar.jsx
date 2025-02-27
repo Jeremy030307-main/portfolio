@@ -1,11 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './navbar.css';
-import logo from '../Assets/logo.png'
+import logo from '../Assets/logo_kc.svg'
+import { useScroll, useTransform, motion, useMotionValueEvent } from 'motion/react';
 
 const Navbar = () => {
 
     const [menu, setMenu] = useState("");
 
+    const ref = useRef(null)
+    const {scrollYProgress} = useScroll({
+      target : ref,
+    })
+
+    const [scrolledClass, setScrolledClass] = useState("");
+    useMotionValueEvent(scrollYProgress, "change", (pos) => {
+        setScrolledClass(pos === 0 ? "" : "scrolled");
+    });
+
+    
     useEffect(() => {
         const navIcons = document.querySelectorAll('#nav-icon1');
     
@@ -26,9 +38,8 @@ const Navbar = () => {
         };
       }, []);
     
-
     return (
-        <div className='navbar'>
+        <motion.div className={`navbar ${scrolledClass}`}>
             <div className='nav-logo'>
                 <img onClick={() => {setMenu("home")}} src={logo} alt=''/>
             </div>
@@ -55,7 +66,7 @@ const Navbar = () => {
                 <span></span>
                 <span></span>
             </div>
-        </div>
+        </motion.div>
 
     );
 
