@@ -1,36 +1,19 @@
 import { useScroll, useTransform, motion } from 'motion/react';
 import './home-project.css';
 import 'animate.css';
-import pic1 from '../Components/Assets/picture1.jpg'
-import pic2 from '../Components/Assets/picture2.jpg'
-import pic3 from '../Components/Assets/picture3.jpg'
-import { useRef } from 'react';
-
+import projectsData from "../Components/Data/projects.json"
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const HomeProject = () => {
 
     const ref = useRef(null);
-    
-    const projects = [
-        {
-            image: pic1,
-            title: "Project 1",
-            description: "blah blah blah",
-            skillset: "blah blah blah"
-        },
-        {
-            image: pic2,
-            title: "Project 2",
-            description: "blah blah blah",
-            skillset: "blah blah blah"
-        },
-        {
-            image: pic3,
-            title: "Project 3",
-            description: "blah blah blah",
-            skillset: "blah blah blah"
-        }
-    ]
+    const navigate = useNavigate();
+    const [projects, setProjects] = useState([]);
+
+    useEffect(() => {
+        setProjects(projectsData);
+    }, []);
 
     const {scrollYProgress} = useScroll({
         target: ref,
@@ -86,16 +69,16 @@ const HomeProject = () => {
 
                         <motion.div  className="home-project-introduction" style={{y: textTranslateY[index], opacity: imageOpacity[index]}}>
                             <h2>{project.title}</h2>
-                            <p>
-                                {project.description} <br />
-                                {project.skillset} <br />
-                            </p>
+                            <p>{project.description}</p>
+                            <p>{project.skillset}</p>
                             
                         </motion.div>
                     </motion.div>  
                 ))}
 
-            <p>More Projects &gt;</p>
+                <div className='more-projects'>
+                    <p onClick={()=> {navigate('projects')}}>More Projects &gt;</p>
+                </div>
 
             </div>
         </div>

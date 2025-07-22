@@ -13,7 +13,6 @@
     text-align: left;
     width: 90%;
     animation: fadeInDown 2s  2s ease-in-out;
-    z-index: -1;
 }
 
 .about-me {
@@ -21,6 +20,19 @@
     font-weight: 500;
     font-size: 20px;
     line-height: 120%;
+}
+
+.about-me p {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.about-me p:hover {
+    text-decoration: underline;
+}
+
+.about-me p:active {
+    transform: scale(0.95); /* Press-down effect */
 }
 
 .contact-method{
@@ -37,6 +49,21 @@
   'wght' 400,
   'GRAD' 0,
   'opsz' 48
+}
+
+.icon-link {
+    color: #606060;
+    transition: transform 0.2s ease, color 0.2s ease;
+    display: inline-block;
+}
+
+
+.icon-link:hover {
+  transform: scale(1.2); /* zoom on hover */
+}
+
+.icon-link:active {
+  transform: scale(0.95); /* press-down effect */
 }
 
 /* Large devices (laptops/desktops, 992px and up) */

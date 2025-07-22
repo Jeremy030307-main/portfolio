@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import './navbar.css';
 import logo from '../Assets/logo_kc.svg'
-import { useScroll, useTransform, motion, useMotionValueEvent } from 'motion/react';
+import { useScroll, motion, useMotionValueEvent } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
 
     const [menu, setMenu] = useState("");
-
+    const navigate = useNavigate()
     const ref = useRef(null)
     const {scrollYProgress} = useScroll({
       target : ref,
@@ -17,46 +18,30 @@ const Navbar = () => {
         setScrolledClass(pos === 0 ? "" : "scrolled");
     });
 
-    
-    useEffect(() => {
-        const navIcons = document.querySelectorAll('#nav-icon1');
-    
-        const handleToggleClass = (event) => {
-          event.currentTarget.classList.toggle('open');
-        };
-    
-        // Add event listeners
-        navIcons.forEach((icon) => {
-          icon.addEventListener('click', handleToggleClass);
-        });
-    
-        // Cleanup function
-        return () => {
-          navIcons.forEach((icon) => {
-            icon.removeEventListener('click', handleToggleClass);
-          });
-        };
-      }, []);
+    const handleNavigate = (pathName) => {
+      setMenu(pathName)
+      navigate("/"+pathName)
+    }
     
     return (
         <motion.div className={`navbar ${scrolledClass}`}>
             <div className='nav-logo'>
-                <img onClick={() => {setMenu("home")}} src={logo} alt=''/>
+                <img onClick={() => {handleNavigate("")}} src={logo} alt=''/>
             </div>
 
             <ul className='nav-menu'>
                 <li  className={menu === "about" ? "active" : ""}
-                     onClick={() => {setMenu("about")}}>
+                     onClick={() => {handleNavigate("about")}}>
                         About
                 </li>
 
                 <li  className={menu === "projects" ? "active" : ""}
-                     onClick={() => {setMenu("projects")}}>
+                     onClick={() => {handleNavigate("projects")}}>
                         Projects
                 </li>
 
                 <li  className={menu === "blogs" ? "active" : ""}
-                     onClick={() => {setMenu("blogs")}}>
+                     onClick={() => {handleNavigate("blogs")}}>
                         Blogs
                 </li>
             </ul>

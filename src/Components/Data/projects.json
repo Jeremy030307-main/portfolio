@@ -1,0 +1,21 @@
+[
+  {
+    "image": "https://i.imgur.com/6A8kkv3.png",
+    "title": "Roam",
+    "description": "An intuitive travel planning app that lets users create, edit, and share personalized itineraries. From organizing destinations and timing in a calendar-like view to tracking trip expenses and discovering plans from other travelers, ROAM makes travel prep smart, flexible, and collaborative.",
+    "skillset": "Swifts, Fireabase"
+  },
+  {
+    "image": "https://i.imgur.com/oFIh4X6.png",
+    "title": "EcoStyle",
+    "description": "A modern clothing brand built on sustainability. EcoStyle uses responsibly sourced materials and introduces a smart EcoPoint system that helps users track the carbon footprint of their purchases — from shipping to production — encouraging conscious fashion choices that make a real impact.",
+    "skillset": "JavaScript, HTML, CSS, React.js, Express.js"
+  },
+  {
+    "image": "https://i.imgur.com/MRyUQx9.png",
+    "title": "Santorini - Digital Board Game",
+    "description": "A creative reimagining of the classic Santorini board game, featuring fresh mechanics and unique rule twists that deepen strategy and replayability. This version brings new challenges to experienced players while keeping the game's core charm and elegance intact.",
+    "skillset": "Java, Java Swing"
+  }
+]
+
