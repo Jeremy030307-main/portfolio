@@ -1,32 +1,5 @@
 import './about.css';
 
-const timelineData = [
-  {
-    year: "2022",
-    title: "Monash University Malaysia",
-    description: "Bachelor of Software Engineering (Honors)",
-    position: "top",
-  },
-  {
-    year: "2024",
-    title: "ERS Energy SDN BHD",
-    description: "Odoo Developer (Academic Collaboration Project)",
-    position: "bottom",
-  },
-  {
-    year: "2024",
-    title: "ERS Energy SDN BHD",
-    description: "Odoo Developer (Academic Collaboration Project)",
-    position: "top",
-  },
-  {
-    year: "2024",
-    title: "ERS Energy SDN BHD",
-    description: "Odoo Developer (Academic Collaboration Project)",
-    position: "bottom",
-  }
-];
-
 const About = () => {
 
     return (
