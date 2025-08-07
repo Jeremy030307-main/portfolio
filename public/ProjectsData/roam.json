@@ -1,0 +1,101 @@
+{
+  "id": "1",
+  "title": "Roam",
+  "summary": "A native iOS travel planning app built with Swift and Firebase, featuring Firebase Authentication, Core Data for offline data persistence, and real-time itinerary collaboration. Roam allows users to create, edit, and share personalized trip plans with smart scheduling, expense tracking, and a clean, UIKit-driven user interface.",
+  "overview": "Many people love to travel, but find the planning and research process stressful and time-consuming. Roam was built to simplify this experience by combining booking details and itinerary planning into one easy-to-use platform. Roam allows users to create, edit, and share personalized itineraries, making travel prep smart, flexible, and collaborative.",
+  "technologies": "Swift, Firebase, UIKit, CoreData, Yelp API",
+  "thumbnail": "https://i.imgur.com/6A8kkv3.png",
+  "githubLink": "https://github.com/username/project-repo",
+  
+  "keyFeatures": [
+  {
+    "title": "Trip Creation & Management",
+    "description": "Users can create and manage trips that include an itinerary, expense tracking, checklists, and saved places — all in one place."
+  },
+  {
+    "title": "Itinerary Planner",
+    "description": "Add and organize destinations, activities, and schedules to build a personalized travel itinerary for each trip."
+  },
+  {
+    "title": "Expense Tracking",
+    "description": "Track trip expenses in real-time, helping users stay within budget while traveling."
+  },
+  {
+    "title": "Checklist Management",
+    "description": "Create and manage packing lists and to-do items, ensuring nothing is forgotten before departure."
+  },
+  {
+    "title": "Saved Places",
+    "description": "Users can bookmark interesting locations they want to visit later, keeping everything organized within the trip."
+  },
+  {
+    "title": "Itinerary Copy & Paste",
+    "description": "Easily copy and paste itineraries from one trip to another, allowing users to reuse plans for similar trips or share with friends."
+  },
+  {
+    "title": "Travel Journal Posts",
+    "description": "Users can create posts about tourist spots, including images and personal captions to share experiences, reviews, and travel tips with others."
+  },
+  {
+    "title": "Location-Based Spot Discovery",
+    "description": "Users can search for a location and view a list of recommended tourist spots within that area, powered by integrated APIs like Yelp."
+  }
+  ],
+  "challenges": [
+    {
+      "title": "Learning Swift",
+      "description": "This project marked my first experience with the Swift programming language, requiring me to quickly learn its syntax and paradigms to build a functional iOS app."
+    },
+    {
+      "title": "First-Time iOS Development",
+      "description": "As my first iOS app, I had to familiarize myself with the entire iOS development lifecycle, from setting up Xcode to understanding view controllers and app structure.Working with tools like Xcode, Interface Builder, and the iOS Simulator for the first time presented a learning curve, especially in debugging and UI design."
+    },
+    {
+      "title": "Structuring Firestore Data",
+      "description": "Designing a scalable and efficient data structure in Firebase Firestore required careful planning to handle nested documents, subcollections, and real-time updates."
+    },
+    {
+      "title": "Using External APIs (Yelp)",
+      "description": "Integrating the Yelp API was my first time working with a third-party API, which involved learning how to handle HTTP requests, parse JSON responses, and manage API keys securely."
+    },
+    {
+      "title": "Real-Time Collaboration",
+      "description": "Implementing real-time collaboration using Firebase, allowing multiple users to edit itineraries simultaneously, was a technical and architectural challenge."
+    },
+    {
+      "title": "Offline Data Persistence",
+      "description": "Ensuring offline access using Core Data required understanding local storage mechanisms and syncing strategies for a smooth user experience."
+    },
+    {
+      "title": "User Authentication",
+      "description": "Integrating Firebase Authentication to securely manage user accounts involved learning authentication flows and handling secure user data."
+    }
+  ],
+  "techStacks": [
+  {
+    "name": "Swift",
+    "description": "The primary programming language used for building the iOS app, ensuring a smooth and responsive user experience."
+  },
+  {
+    "name": "Firebase Firestore",
+    "description": "Used as a cloud-hosted NoSQL database to store and sync user data in real-time across devices."
+  },
+  {
+    "name": "Firebase Authentication",
+    "description": "Manages user sign-in and authentication securely, supporting email/password and anonymous login."
+  },
+  {
+    "name": "UIKit",
+    "description": "Framework for building the app's user interface, providing a native look and feel consistent with iOS design guidelines."
+  },
+  {
+    "name": "Core Data",
+    "description": "Handles local data storage, allowing users to access and modify their itineraries offline."
+  },
+  {
+    "name": "Yelp API",
+    "description": "Provides location-based data about restaurants, attractions, and tourist spots to enhance travel discovery features."
+  }
+]
+
+}

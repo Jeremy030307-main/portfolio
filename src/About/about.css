@@ -1,0 +1,119 @@
+.about-page-container{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 10% 0px 0px 0px;
+    box-sizing: border-box;
+    flex-direction: column;
+    gap: 0;
+}
+
+.about-slide{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    height: 100vh;
+    position: relative;
+}
+
+.about-introduction-container {
+    display: flex;
+    flex-direction: row;
+    gap: 150px;
+    padding: 0 300px
+}
+
+.about-text-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 3;
+}
+
+.about-text-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+.about-text-content p {
+    flex: 1;
+    font-size: 1.2em;
+    line-height: 1.4;
+    color: #606060;
+}
+
+.about-image-container {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex: 2;
+}
+
+.about-image-container img {
+    width: 421px;
+    border-radius: 10px;
+    object-fit:cover;
+}
+
+.timeline-container{
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.timeline-content-container {
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+    height: 163px;
+    align-items:end end;
+}
+
+.timeline-content-container.top {
+    border-bottom: #606060 1px solid;
+}
+
+.timeline-content-container.bottom{
+    border-top: #606060 1px solid;
+}
+
+.timeline-content-year {
+    font-weight: 400;
+    font-size: 57px;
+    color: #BFBFBF;
+    transform: rotate(-90deg);
+    padding: 0;
+    margin: 0;
+    margin-left: -20px;
+}
+
+.timeline-content-description h2 {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 117%;
+    letter-spacing: -0.03em;
+}
+
+.timeline-content-description p {
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 121.5%;
+    letter-spacing: -0.03em;
+}
+
+.timeline-content-empty{
+     width: 500px;
+    height: 163px;
+}
+

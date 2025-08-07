@@ -1,0 +1,72 @@
+{
+  "id": "4",
+  "title": "Agile Scrum Task Tracker",
+  "summary": "A lightweight Scrum project management tool built with Flask, SQLite, and Python. The app enables users to manage tasks across sprints, assign stories to team members, and visualize contributions through interactive charts.",
+  "overview": "This web-based Scrum tool was developed to simplify sprint planning and task tracking in small to medium development teams. Built with Flask and backed by SQLite, it allows users to create and organize tasks by title, assignee, deadline, and story point. Team contributions can be visualized using integrated charts, helping Scrum Masters and developers better understand workload distribution and sprint progress. The app is ideal for collaborative teams who want a simple, no-login-required tool to manage tasks and measure team activity.",
+  "technologies": "Python, Flask, SQLite, Chart.js, HTML/CSS",
+  "thumbnail": "https://i.imgur.com/POypzf6.png",
+  "githubLink": "",
+  "liveDemoLink": "https://www.youtube.com/embed/zVFi2gN1RAc?si=kWz5iBzwiwvN-_LJ",
+  "keyFeatures": [
+    {
+      "title": "Task Management",
+      "description": "Users can add, edit, or delete tasks with details like title, deadline, assignee, status, and story points, enabling organized sprint planning and tracking."
+    },
+    {
+      "title": "Sprint Overview",
+      "description": "A consolidated view of all current sprint tasks with filters for assignee and task status to help Scrum Masters track team progress efficiently."
+    },
+    {
+      "title": "Team Contribution Analytics",
+      "description": "Interactive bar and pie charts visualize team member workload and contribution using story points, helping balance assignments and monitor team performance."
+    },
+    {
+      "title": "Simple and Lightweight Backend",
+      "description": "Backed by SQLite for a fast, no-fuss setup that requires no external database service; ideal for small teams or classroom environments."
+    },
+    {
+      "title": "Flask Web Interface",
+      "description": "Built using Flask with clean routing and dynamic HTML rendering for managing task data in a responsive, easy-to-use interface."
+    }
+  ],
+  "challenges": [
+    {
+      "title": "Relational Data Handling in SQLite",
+      "description": "Modeling task relationships such as user-to-task and sprint-to-task using SQLite while maintaining a lightweight schema with minimal external dependencies."
+    },
+    {
+      "title": "Dynamic Chart Rendering",
+      "description": "Using Chart.js to render real-time visualizations of task distributions and contribution metrics, with responsive updates when task data changes."
+    },
+    {
+      "title": "Task Data Validation",
+      "description": "Ensuring user-submitted task data (dates, assignees, story points) is clean, accurate, and consistent using both front-end and back-end validation."
+    },
+    {
+      "title": "Maintaining Simplicity Without Sacrificing Features",
+      "description": "Designing a usable Scrum tool that provides essential features without the complexity of larger platforms like Jira or Trello."
+    }
+  ],
+  "techStacks": [
+    {
+      "name": "Python",
+      "description": "Used for back-end logic, task processing, and server-side rendering of pages with Flask."
+    },
+    {
+      "name": "Flask",
+      "description": "Micro web framework used to build the RESTful API, route endpoints, and serve the dynamic web application."
+    },
+    {
+      "name": "SQLite",
+      "description": "Serves as the lightweight relational database for storing tasks, team members, and contribution data."
+    },
+    {
+      "name": "Chart.js",
+      "description": "Enables real-time visualizations of task completion and team contributions through interactive charts."
+    },
+    {
+      "name": "HTML/CSS",
+      "description": "Used for building a responsive and user-friendly web interface styled with custom CSS and layout techniques."
+    }
+  ]
+}

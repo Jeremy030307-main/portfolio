@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import "./project-container.css"
 
 const ProjectContainer = ({index, projectName, projectDescription, projectTechStack, projectImage}) => {
     
+    const navigate = useNavigate();
+
     return (
         <div className="project-container">
 
@@ -13,7 +16,7 @@ const ProjectContainer = ({index, projectName, projectDescription, projectTechSt
                 </div>
 
                 <div className="project-more">
-                    <p>More on this project &#8599;</p>
+                    <p onClick={()=>{navigate(`/projects/${String(projectName).toLowerCase()}`)}}>More on this project &#8599;</p>
                 </div>
                 
             </div>

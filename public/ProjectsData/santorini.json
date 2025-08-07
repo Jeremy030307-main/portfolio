@@ -1,0 +1,68 @@
+{
+  "id": "3",
+  "title": "Santorini Digital Board Game",
+  "summary": "A desktop-based recreation of the strategic board game Santorini, developed entirely with Java and Java Swing. The project captures the game's core mechanics, introduces a new coin-based mode, and offers a polished gameplay experience through a modular MVC architecture.",
+  "overview": "Santorini is a modern abstract strategy game involving movement, building, and player powers. This digital adaptation was developed as a standalone desktop application using Java and Java Swing, following a clean Model-View-Controller (MVC) architecture. The game supports both classic Santorini rules and an original coin-based mode where players collect coins and purchase building blocks. Core features include turn-based logic, god power dynamics, and a visually intuitive board using 2D Swing components to simulate 3D tower construction.",
+  "technologies": "Java, Java Swing, Object-Oriented Programming, MVC Pattern",
+  "thumbnail": "https://i.imgur.com/MRyUQx9.png",
+  "githubLink": "",
+  "liveDemoLink": "",
+  "keyFeatures": [
+    {
+      "title": "Core Game Logic",
+      "description": "Implements the full set of rules for movement, building, and win conditions based on the original Santorini board game, with a focus on rule enforcement and modular architecture."
+    },
+    {
+      "title": "God Power System",
+      "description": "Extensible framework to support diverse god powers, allowing each power to hook into specific phases like before move, after build, or opponent's turn."
+    },
+    {
+      "title": "Coin-Based Game Mode",
+      "description": "An original game variant where players collect coins from the board and use them to purchase building blocks, introducing resource management and deeper strategic planning."
+    },
+    {
+      "title": "Turn & Action Management",
+      "description": "TurnManager enforces proper sequencing of actions, taking god powers and game mode variations into account for flexible yet controlled gameplay."
+    },
+    {
+      "title": "Interactive Swing UI",
+      "description": "Built with Java Swing, the GUI displays game state in real time, including worker positions, tower levels, and coin pickups, using intuitive mouse interactions and visual feedback."
+    }
+  ],
+  "challenges": [
+    {
+      "title": "God Power Implementation",
+      "description": "Designing a scalable and decoupled way to define and trigger god powers across different game phases without cluttering the main game engine."
+    },
+    {
+      "title": "Turn Flow Complexity",
+      "description": "Handling dynamic turn logic influenced by god powers and new game rules like the coin system, while maintaining predictability and fairness."
+    },
+    {
+      "title": "MVC Separation",
+      "description": "Maintaining a strict separation between model, view, and controller layers to improve modularity, code readability, and ease of future updates or feature additions."
+    },
+    {
+      "title": "Visualizing 3D Buildings in 2D",
+      "description": "Rendering tower levels and worker stacking using layered tiles in a 2D Java Swing grid while maintaining clarity and visual hierarchy."
+    }
+  ],
+  "techStacks": [
+    {
+      "name": "Java",
+      "description": "Used to implement the entire application including core game logic, user interface, and custom game mechanics like coin-based gameplay."
+    },
+    {
+      "name": "Java Swing",
+      "description": "Utilized to build the interactive graphical interface for player input, board rendering, and visual updates."
+    },
+    {
+      "name": "Object-Oriented Programming",
+      "description": "Applied to structure game components like Player, Worker, TurnManager, and GodPower in a modular and reusable fashion."
+    },
+    {
+      "name": "MVC Pattern",
+      "description": "Followed to separate game state (Model), rendering (View), and user/game input (Controller) for better maintainability and testing."
+    }
+  ]
+}

@@ -52,14 +52,14 @@ const HomeProject = () => {
 
     return (
         <div ref={ref} className='home-project-scrollable-container'>
-            <div  className='home-project-container' >
+            <div className='home-project-container'>
 
                 <div className='home-project-header'>
                     <h1>Projects</h1>
                 </div>
 
-                {projects.map((project, index) => (
-                    <motion.div className='home-project-content' style={{display: projectDisplay[index]}}>
+                {projects.slice(0, 3).map((project, index) => (
+                    <motion.div key={index} className='home-project-content' style={{display: projectDisplay[index]}}>
                         <motion.div className="home-project-image" style={{
                                     opacity: imageOpacity[index],
                                     scale: imageScale[index]
@@ -67,17 +67,24 @@ const HomeProject = () => {
                             <img src={project.image} alt=""/>
                         </motion.div>
 
-                        <motion.div  className="home-project-introduction" style={{y: textTranslateY[index], opacity: imageOpacity[index]}}>
-                            <h2>{project.title}</h2>
-                            <p>{project.description}</p>
-                            <p>{project.skillset}</p>
+                        <motion.div className="home-project-introduction" style={{y: textTranslateY[index], opacity: imageOpacity[index]}}>
+                            <div>
+                                <h2>{project.title}</h2>
+                                <p>{project.description}</p>
+                                <p>{project.skillset}</p>
+                            </div>
                             
+                            <div className='home-project-link'>
+                                <p onClick={()=>{navigate(`/projects/${String(project.title).toLowerCase()}`)}}>More on this project &#8599;</p>
+                            </div>
                         </motion.div>
-                    </motion.div>  
+
+                        
+                    </motion.div>
                 ))}
 
                 <div className='more-projects'>
-                    <p onClick={()=> {navigate('projects')}}>More Projects &gt;</p>
+                    <p onClick={() => {navigate('projects')}}>More Projects &gt;</p>
                 </div>
 
             </div>

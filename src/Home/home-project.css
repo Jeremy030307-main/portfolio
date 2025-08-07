@@ -55,6 +55,8 @@
     display: flex;
     flex-direction: column;
     text-align: left;
+    justify-content: space-between;
+    height: 360px;
 }
 
 .more-projects {
@@ -74,5 +76,20 @@
     transform: scale(0.97);
 }
 
+.home-project-link {
+    cursor: pointer;
+}
+
+.home-project-link p {
+    display: inline-block;
+}
+
+.home-project-link p:hover {
+    text-decoration: underline;
+}
+
+.home-project-link p:active {
+    transform: scale(0.97);
+}
 
 

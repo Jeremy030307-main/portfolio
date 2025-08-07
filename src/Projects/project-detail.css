@@ -1,0 +1,121 @@
+.project-detail-container{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 6% 300px 0px 300px;
+    box-sizing: border-box;
+}
+
+.project-header-content {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    padding-bottom: 2em;
+    
+}
+
+.project-header-content img {
+    width: 600px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.project-text-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-link {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.project-link a {
+    display: inline-block;
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+}
+
+.project-link a:hover {
+    text-decoration: underline;
+}
+
+.project-link a:active{
+    transform: scale(0.95);
+}
+
+.project-content-divider{
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin: 1.5rem 0; /* Adjust spacing as needed */
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-item {
+  overflow: hidden;
+  border: 1px solid #c2c2c2;
+  border-bottom: none;
+}
+
+/* Round top corners for the first feature-title */
+.feature-item:first-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Round bottom corners for the last feature-title */
+.feature-item:last-child {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom: 1px solid #c2c2c2;
+}
+
+
+.feature-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem 1rem 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.feature-title:hover {
+  background-color: #ebebeb; /* slightly darker on hover */
+}
+
+.feature-description {
+  padding: 0 0.5rem 0.5rem 3rem;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.feature-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.feature-image img {
+  width: auto;
+  height: 400px;
+  border-radius: 10px;
+}
+
+.feature-item:last-child .feature-description {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom: 1px solid #c2c2c2;
+}

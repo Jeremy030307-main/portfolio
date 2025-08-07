@@ -1,0 +1,64 @@
+{
+  "id": "2",
+  "title": "Ecostyle",
+  "summary": "A full-stack e-commerce platform built with React and Firebase, featuring both customer-facing and admin-facing interfaces. Ecostyle enables users to shop sustainable fashion and provides store owners with tools to manage inventory, orders, and product listings efficiently.",
+  "overview": "Ecostyle is a modern sustainability-focused e-commerce website that supports ethical fashion. The platform includes a responsive storefront where customers can browse, purchase, and track eco-friendly clothing. On the backend, a dedicated admin dashboard allows store owners to manage products, view order details, update inventory, and monitor customer activity. With real-time updates via Firebase and secure payments through Stripe, Ecostyle provides a complete shopping and store management experience.",
+  "technologies": "React, Firebase, Stripe, CSS Modules",
+  "thumbnail": "https://i.imgur.com/oFIh4X6.png",
+  "githubLink": "",
+  "liveDemoLink": "https://ecostyle-jeremys-projects-7e06879c.vercel.app/",
+  "keyFeatures": [
+    {
+      "title": "Customer-Facing Storefront",
+      "description": "Intuitive and responsive interface for customers to browse products using filters for gender, type, and size; view detailed product pages with size guides; and add items to their cart or wishlist."
+    },
+    {
+      "title": "Streamlined Checkout Experience",
+      "description": "Customers can manage their address book, choose from multiple shipping and payment options, and securely complete purchases through a simplified cart and checkout process."
+    },
+    {
+      "title": "Seller Dashboard",
+      "description": "Comprehensive dashboard for sellers to add, edit, or delete products; manage orders; update product categories and collections; and edit size charts with real-time status updates."
+    },
+    {
+      "title": "Account Management",
+      "description": "Both customers and sellers can manage personal information, saved addresses, payment methods, and track order history through a unified 'My Account' section."
+    }
+  ],
+  "challenges": [
+    {
+      "title": "Dual Interface Structure",
+      "description": "Designing and managing two distinct user experiences: a smooth, user-friendly storefront for shoppers and a robust admin dashboard for store owners."
+    },
+    {
+      "title": "Stripe Integration",
+      "description": "Implementing secure and seamless payments using the Stripe API, including handling edge cases like payment failures, address mismatches, and multi-currency support."
+    },
+    {
+      "title": "Backend Security & Access Control",
+      "description": "Ensuring secure authentication and proper role-based access control for customer and admin users, while protecting sensitive data stored in Firebase."
+    },
+    {
+      "title": "Real-Time Inventory & Order Management",
+      "description": "Synchronizing product listings and order statuses in real time using Firebase Firestore and Realtime Database, while maintaining consistency across multiple clients."
+    }
+  ],
+  "techStacks": [
+    {
+      "name": "React",
+      "description": "Used to build both the customer-facing storefront and admin dashboard with reusable, component-based architecture."
+    },
+    {
+      "name": "Firebase",
+      "description": "Handles user authentication, real-time data sync, and database management for both front and backend."
+    },
+    {
+      "name": "Stripe",
+      "description": "Enables secure online payments and processes checkout flows with support for multiple payment methods."
+    },
+    {
+      "name": "CSS Modules",
+      "description": "Used for writing modular and maintainable styles scoped to individual components."
+    }
+  ]
+}
