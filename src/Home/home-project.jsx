@@ -22,7 +22,7 @@ const HomeProject = () => {
 
     const projectDisplay = [
         useTransform(scrollYProgress, (pos) => {
-            return  pos > 0.1 ? "none": ""
+                return  pos > 0.1 ? "none": ""
         }),
         useTransform(scrollYProgress, (pos) => {
             return pos > 0.45 || pos < 0.1 ? "none": ""
