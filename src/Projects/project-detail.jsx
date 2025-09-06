@@ -38,8 +38,17 @@ return (
                 </div>
 
                 <div className='project-link'>
-                    <a href="https://yourstore.com/help" target="_blank" rel="noopener noreferrer">Github &#8599;</a>
-                    <a href={projectData.liveDemoLink} target="_blank" rel="noopener noreferrer">Website &#8599;</a>
+                {projectData.githubLink && (
+                    <a href={projectData.githubLink} target="_blank" rel="noopener noreferrer">
+                    Github &#8599;
+                    </a>
+                )}
+                
+                {projectData.liveDemoLink && (
+                    <a href={projectData.liveDemoLink} target="_blank" rel="noopener noreferrer">
+                    Website &#8599;
+                    </a>
+                )}
                 </div>
                 
             </div>

@@ -22,6 +22,27 @@
     "title": "Scrumatics",
     "description": "A lightweight Scrum project management tool built with Flask, SQLite, and Python. The app enables users to manage tasks across sprints, assign stories to team members, and visualize contributions through interactive charts.",
     "skillset": "Python, Flask, SQLite, Chart.js, HTML/CSS"
-  }
+  },
+ {
+  "image": "https://i.imgur.com/gtjUazx.png",
+  "title": "Pacman Artificial Intelligence",
+  "description": "An implementation of the UC Berkeley CS188 Pacman AI project, exploring various AI techniques to control Pacman in different game scenarios. The project includes agents that utilize search algorithms, adversarial strategies, probabilistic reasoning, and decision-making under uncertainty.",
+  "skillset": [
+    "Python",
+    "Artificial Intelligence",
+    "Search Algorithms (DFS, BFS, A*, Uniform Cost Search)",
+    "Minimax Algorithm",
+    "Alpha-Beta Pruning",
+    "Reflex Agents",
+    "Markov Decision Processes (MDP)",
+    "Value Iteration",
+    "Policy Iteration",
+    "Bayesian Networks",
+    "Neural Networks",
+    "Game Theory",
+    "Probabilistic Inference"
+  ]
+}
+
 ]
 

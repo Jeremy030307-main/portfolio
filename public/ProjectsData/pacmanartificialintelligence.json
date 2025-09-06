@@ -1,0 +1,80 @@
+{
+  "id": "5",
+  "title": "Pacman Artificial Intelligence",
+  "summary": "An implementation of the UC Berkeley CS188 Pacman AI project, exploring multiple artificial intelligence approaches—including search algorithms, adversarial strategies, probabilistic reasoning, reinforcement learning, and neural networks—to control Pacman’s behavior across various game scenarios.",
+  "overview": "This project is based on the UC Berkeley CS188 Pacman AI assignments, which teach and apply core AI concepts through interactive gameplay. Pacman is programmed to navigate mazes, avoid or chase ghosts, and collect food using a variety of AI models. Techniques include search algorithms, adversarial agents, probabilistic inference, Markov Decision Processes (MDPs), reinforcement learning, and neural network evaluation functions. For the neural network component, multiple architectures were tested—including single hidden layer, two-layer, and three-layer models—evaluating their performance, computational efficiency, and ability to generalize across different maze layouts.",
+  "technologies": "Python, Search Algorithms, Minimax, Alpha-Beta Pruning, Markov Decision Processes, Reinforcement Learning, Neural Networks",
+  "thumbnail": "https://i.imgur.com/gtjUazx.png",
+  "githubLink": "https://github.com/Jeremy030307-main/PacmanAI",
+  "liveDemoLink": "",
+  "keyFeatures": [
+    {
+      "title": "Search-Based Agents",
+      "description": "Implemented Pacman agents that navigate mazes using algorithms like Depth-First Search, Breadth-First Search, Uniform Cost Search, and A*."
+    },
+    {
+      "title": "Adversarial Agents",
+      "description": "Designed agents using Minimax and Alpha-Beta Pruning to play optimally against ghost opponents."
+    },
+    {
+      "title": "Probabilistic Inference",
+      "description": "Applied Hidden Markov Models and particle filtering to track ghost locations with noisy sensor data."
+    },
+    {
+      "title": "MDP and Reinforcement Learning",
+      "description": "Developed agents that learn optimal policies using Markov Decision Processes, Value Iteration, Q-learning, and other RL techniques."
+    },
+    {
+      "title": "Neural Network Evaluation",
+      "description": "Built and trained neural networks to evaluate Pacman game states, experimenting with architectures ranging from a single hidden layer to multi-layer designs."
+    }
+  ],
+  "challenges": [
+    {
+      "title": "Implementing Multiple AI Paradigms",
+      "description": "Ensuring each AI approach—search, adversarial, probabilistic, reinforcement learning, and neural network evaluation—works within the Pacman framework without breaking other agents."
+    },
+    {
+      "title": "Balancing Performance and Complexity",
+      "description": "Optimizing algorithms and neural network inference to run efficiently on large maps while keeping the implementation clear and maintainable."
+    },
+    {
+      "title": "Debugging in a Dynamic Game Environment",
+      "description": "Diagnosing issues in pathfinding, decision-making, and ghost tracking within a constantly changing maze layout."
+    },
+    {
+      "title": "Integrating Probabilistic Models",
+      "description": "Accurately modeling uncertainty and partial observability to improve Pacman's decision-making in noisy environments."
+    },
+    {
+      "title": "Neural Network Training & Tuning",
+      "description": "Designing, training, and tuning neural networks for evaluating game states without overfitting to specific maze configurations."
+    },
+    {
+      "title": "Comparative Analysis of Neural Network Architectures",
+      "description": "Experimented with single hidden layer, two-layer, and three-layer neural network models; compared their accuracy, training speed, and generalization across unseen mazes."
+    }
+  ],
+  "techStacks": [
+    {
+      "name": "Python",
+      "description": "Primary programming language used for implementing all agents and algorithms."
+    },
+    {
+      "name": "Search Algorithms",
+      "description": "DFS, BFS, UCS, and A* for maze navigation and food collection."
+    },
+    {
+      "name": "Minimax & Alpha-Beta Pruning",
+      "description": "Used for creating competitive agents that reason about ghost behavior."
+    },
+    {
+      "name": "Markov Decision Processes & Reinforcement Learning",
+      "description": "Applied to teach agents to learn optimal behavior policies from experience."
+    },
+    {
+      "name": "Neural Networks",
+      "description": "Implemented and tested multiple architectures, analyzing performance trade-offs in hidden layer depth and network size."
+    }
+  ]
+}

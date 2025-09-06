@@ -1,24 +1,26 @@
 // src/components/Footer.jsx
+import "./footer.css";
 import React from "react";
 
 const Footer = () => {
   return (
-    <footer style={styles.footer}>
-      <p>&copy; 2025 Your Company Name. All rights reserved.</p>
+    <footer>
+
+      <div className="footer-text">
+        Teng Kong Cheng - {new Date().getFullYear()}
+      </div>
+        
+      <div>
+        <ul className="footer-links">
+          <li><a>Github</a></li>
+          <li><a>Linkedin</a></li>
+          <li><a>Email</a></li>
+        </ul>
+      </div>
     </footer>
   );
 };
 
-const styles = {
-  footer: {
-    backgroundColor: "#333",
-    color: "#fff",
-    padding: "20px",
-    textAlign: "center",
-    position: "relative",
-    bottom: 0,
-    width: "100%",
-  },
-};
+
 
 export default Footer;

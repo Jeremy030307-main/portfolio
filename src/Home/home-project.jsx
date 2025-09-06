@@ -1,7 +1,6 @@
 import { useScroll, useTransform, motion } from 'motion/react';
 import './home-project.css';
 import 'animate.css';
-import projectsData from "../Components/Data/projects.json"
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,10 +9,18 @@ const HomeProject = () => {
     const ref = useRef(null);
     const navigate = useNavigate();
     const [projects, setProjects] = useState([]);
+    const [error, setError] = useState(null);
+
 
     useEffect(() => {
-        setProjects(projectsData);
-    }, []);
+    fetch(`/ProjectsData/projects.json`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Project not found");
+        return res.json();
+      })
+      .then((data) => setProjects(data))
+      .catch((err) => setError(err.message));
+  }, []);
 
     const {scrollYProgress} = useScroll({
         target: ref,

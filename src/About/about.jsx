@@ -26,9 +26,21 @@ const About = () => {
 
             <div className='about-slide'>
                 <div className="timeline-container">
+
+                    <div className='timeline-content-wrapper'>
+                        <div className='timeline-content-empty'/>
+                        <div className='timeline-content-container bottom'>
+                            <div className='timeline-content-year'><p></p></div>
+                            <div className='timeline-content-description'>
+                                <h2></h2>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className='timeline-content-wrapper'>
                         <div className='timeline-content-container top'>
-                            <div className='timeline-content-year'><p>2024</p></div>
+                            <div className='timeline-content-year'><p>2022</p></div>
                             <div className='timeline-content-description'>
                                 <h2>Monash University Malaysia</h2>
                                 <p>Bachelor of Software Engineering (Honors)</p>
@@ -42,8 +54,8 @@ const About = () => {
                         <div className='timeline-content-container bottom'>
                             <div className='timeline-content-year'><p>2024</p></div>
                             <div className='timeline-content-description'>
-                                <h2>Monash University Malaysia</h2>
-                                <p>Bachelor of Software Engineering (Honors)</p>
+                                <h2>ERS Energy SDN BHD</h2>
+                                <p>Industry-Acadamia Collaboration</p>
                             </div>
                         </div>
                     </div>
@@ -52,8 +64,8 @@ const About = () => {
                         <div className='timeline-content-container top'>
                             <div className='timeline-content-year'><p>2024</p></div>
                             <div className='timeline-content-description'>
-                                <h2>Monash University Malaysia</h2>
-                                <p>Bachelor of Software Engineering (Honors)</p>
+                                <h2>Talker Coffee and Chocholate</h2>
+                                <p>Part Time Barista</p>
                             </div>
                         </div>
                         <div className='timeline-content-empty'/>
@@ -62,32 +74,10 @@ const About = () => {
                     <div className='timeline-content-wrapper'>
                         <div className='timeline-content-empty'/>
                         <div className='timeline-content-container bottom'>
-                            <div className='timeline-content-year'><p>2024</p></div>
+                            <div className='timeline-content-year'><p></p></div>
                             <div className='timeline-content-description'>
-                                <h2>Monash University Malaysia</h2>
-                                <p>Bachelor of Software Engineering (Honors)</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className='timeline-content-wrapper'>
-                        <div className='timeline-content-container top'>
-                            <div className='timeline-content-year'><p>2024</p></div>
-                            <div className='timeline-content-description'>
-                                <h2>Monash University Malaysia</h2>
-                                <p>Bachelor of Software Engineering (Honors)</p>
-                            </div>
-                        </div>
-                        <div className='timeline-content-empty'/>
-                    </div>
-
-                    <div className='timeline-content-wrapper'>
-                        <div className='timeline-content-empty'/>
-                        <div className='timeline-content-container bottom'>
-                            <div className='timeline-content-year'><p>2024</p></div>
-                            <div className='timeline-content-description'>
-                                <h2>Monash University Malaysia</h2>
-                                <p>Bachelor of Software Engineering (Honors)</p>
+                                <h2></h2>
+                                <p></p>
                             </div>
                         </div>
                     </div>

@@ -5,7 +5,7 @@
   "overview": "Santorini is a modern abstract strategy game involving movement, building, and player powers. This digital adaptation was developed as a standalone desktop application using Java and Java Swing, following a clean Model-View-Controller (MVC) architecture. The game supports both classic Santorini rules and an original coin-based mode where players collect coins and purchase building blocks. Core features include turn-based logic, god power dynamics, and a visually intuitive board using 2D Swing components to simulate 3D tower construction.",
   "technologies": "Java, Java Swing, Object-Oriented Programming, MVC Pattern",
   "thumbnail": "https://i.imgur.com/MRyUQx9.png",
-  "githubLink": "",
+  "githubLink": "https://github.com/Jeremy030307-main/Santorini",
   "liveDemoLink": "",
   "keyFeatures": [
     {

@@ -16,7 +16,7 @@ const ProjectContainer = ({index, projectName, projectDescription, projectTechSt
                 </div>
 
                 <div className="project-more">
-                    <p onClick={()=>{navigate(`/projects/${String(projectName).toLowerCase()}`)}}>More on this project &#8599;</p>
+                    <p onClick={()=>{navigate(`/projects/${String(projectName).replace(/\s+/g, '').toLowerCase()}`)}}>More on this project &#8599;</p>
                 </div>
                 
             </div>

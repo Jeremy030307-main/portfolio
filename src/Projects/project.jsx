@@ -1,15 +1,22 @@
 import "./project.css"
 import ProjectContainer from './project-container';
 import { useEffect, useState } from "react";
-import projectsData from "../Components/Data/projects.json";
 
 const Project = () => {
 
-    const [projects, setProjects] = useState([]);
+        const [projects, setProjects] = useState([]);
+    const [error, setError] = useState(null);
+
 
     useEffect(() => {
-        setProjects(projectsData);
-    }, []);
+    fetch(`/ProjectsData/projects.json`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Project not found");
+        return res.json();
+      })
+      .then((data) => setProjects(data))
+      .catch((err) => setError(err.message));
+  }, []);
     
     return (
         <div className="projects-window">

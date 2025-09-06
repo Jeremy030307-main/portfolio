@@ -5,7 +5,7 @@
   "overview": "Many people love to travel, but find the planning and research process stressful and time-consuming. Roam was built to simplify this experience by combining booking details and itinerary planning into one easy-to-use platform. Roam allows users to create, edit, and share personalized itineraries, making travel prep smart, flexible, and collaborative.",
   "technologies": "Swift, Firebase, UIKit, CoreData, Yelp API",
   "thumbnail": "https://i.imgur.com/6A8kkv3.png",
-  "githubLink": "https://github.com/username/project-repo",
+  "githubLink": "https://github.com/Jeremy030307-main/Roam",
   
   "keyFeatures": [
   {

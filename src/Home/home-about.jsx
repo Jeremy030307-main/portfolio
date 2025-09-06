@@ -54,7 +54,7 @@ const HomeAbout = () => {
                          </li>
 
                          <li>
-                            <a href="https://www.linkedin.com/in/jeremy-teng-439bba312/" target="_blank" rel="noopener noreferrer" className='icon-link'>
+                            <a href="https://linkedin.com/in/teng-kong-cheng-439bba312" target="_blank" rel="noopener noreferrer" className='icon-link'>
                                 <i className="fa-brands fa-linkedin fa-2xl"></i>
                             </a>
                          </li>
