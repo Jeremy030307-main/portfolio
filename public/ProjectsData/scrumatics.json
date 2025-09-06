@@ -5,7 +5,7 @@
   "overview": "This web-based Scrum tool was developed to simplify sprint planning and task tracking in small to medium development teams. Built with Flask and backed by SQLite, it allows users to create and organize tasks by title, assignee, deadline, and story point. Team contributions can be visualized using integrated charts, helping Scrum Masters and developers better understand workload distribution and sprint progress. The app is ideal for collaborative teams who want a simple, no-login-required tool to manage tasks and measure team activity.",
   "technologies": "Python, Flask, SQLite, Chart.js, HTML/CSS",
   "thumbnail": "https://i.imgur.com/POypzf6.png",
-  "githubLink": "",
+  "githubLink": "https://github.com/Jeremy030307-main/SCRUMatics",
   "liveDemoLink": "",
   "demoLink":"https://www.youtube.com/embed/zVFi2gN1RAc?si=kWz5iBzwiwvN-_LJ",
   "keyFeatures": [
