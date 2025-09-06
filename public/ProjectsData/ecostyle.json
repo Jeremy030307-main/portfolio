@@ -5,7 +5,7 @@
   "overview": "Ecostyle is a modern sustainability-focused e-commerce website that supports ethical fashion. The platform includes a responsive storefront where customers can browse, purchase, and track eco-friendly clothing. On the backend, a dedicated admin dashboard allows store owners to manage products, view order details, update inventory, and monitor customer activity. With real-time updates via Firebase and secure payments through Stripe, Ecostyle provides a complete shopping and store management experience.",
   "technologies": "React, Firebase, Stripe, CSS Modules",
   "thumbnail": "https://i.imgur.com/oFIh4X6.png",
-  "githubLink": "",
+  "githubLink": "https://github.com/Jeremy030307-main/ecostyle",
   "liveDemoLink": "https://ecostyle-jeremys-projects-7e06879c.vercel.app/",
   "keyFeatures": [
     {

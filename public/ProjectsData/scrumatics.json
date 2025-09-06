@@ -6,7 +6,8 @@
   "technologies": "Python, Flask, SQLite, Chart.js, HTML/CSS",
   "thumbnail": "https://i.imgur.com/POypzf6.png",
   "githubLink": "",
-  "liveDemoLink": "https://www.youtube.com/embed/zVFi2gN1RAc?si=kWz5iBzwiwvN-_LJ",
+  "liveDemoLink": "",
+  "demoLink":"https://www.youtube.com/embed/zVFi2gN1RAc?si=kWz5iBzwiwvN-_LJ",
   "keyFeatures": [
     {
       "title": "Task Management",
