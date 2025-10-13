@@ -40,10 +40,6 @@ const Navbar = () => {
                         Projects
                 </li>
 
-                <li  className={menu === "blogs" ? "active" : ""}
-                     onClick={() => {handleNavigate("blogs")}}>
-                        Blogs
-                </li>
             </ul>
 
             <div id="nav-icon1">

@@ -13,15 +13,6 @@ const Home = () => {
 
             <HomeProject/>
 
-            <div className='slide'>
-            </div>
-
-            <div className='slide'>
-            </div>
-
-            <div className='slide'>
-            </div>
-
         </div>
     )
 }
