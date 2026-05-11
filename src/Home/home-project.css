@@ -61,34 +61,35 @@
 
 .more-projects {
     text-align: center;
-    cursor: pointer;
 }
 
-.more-projects p {
+.more-projects a {
     display: inline-block;
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
 }
 
-.more-projects p:hover {
+.more-projects a:hover {
     text-decoration: underline;
 }
 
-.more-projects p:active {
+.more-projects a:active {
     transform: scale(0.97);
 }
 
-.home-project-link {
-    cursor: pointer;
-}
-
-.home-project-link p {
+.home-project-link a {
     display: inline-block;
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
 }
 
-.home-project-link p:hover {
+.home-project-link a:hover {
     text-decoration: underline;
 }
 
-.home-project-link p:active {
+.home-project-link a:active {
     transform: scale(0.97);
 }
 

@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
-import "./project-container.css"
+import { Link } from 'react-router-dom';
+import './project-container.css';
+import { projectSlug } from '../utils/slug';
 
-const ProjectContainer = ({index, projectName, projectDescription, projectTechStack, projectImage}) => {
-    
-    const navigate = useNavigate();
+const ProjectContainer = ({ index, projectName, projectDescription, projectTechStack, projectImage }) => {
+    const techStack = Array.isArray(projectTechStack) ? projectTechStack.join(', ') : projectTechStack;
 
     return (
         <div className="project-container">
@@ -12,21 +12,20 @@ const ProjectContainer = ({index, projectName, projectDescription, projectTechSt
                 <div>
                     <h2>{String(index + 1).padStart(2, '0')}/ {projectName}</h2>
                     <p>{projectDescription}</p>
-                    <p>{projectTechStack}</p>
+                    <p>{techStack}</p>
                 </div>
 
                 <div className="project-more">
-                    <p onClick={()=>{navigate(`/projects/${String(projectName).replace(/\s+/g, '').toLowerCase()}`)}}>More on this project &#8599;</p>
+                    <Link to={`/projects/${projectSlug(projectName)}`}>More on this project &#8599;</Link>
                 </div>
-                
             </div>
 
             <div className="project-image-container">
-                <img src={projectImage} alt=""/>
+                <img src={projectImage} alt={`${projectName} preview`} />
             </div>
 
         </div>
-    )
-}
+    );
+};
 
 export default ProjectContainer;

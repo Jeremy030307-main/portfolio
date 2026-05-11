@@ -12,51 +12,159 @@
 .about-slide{
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0.75rem;
     box-sizing: border-box;
-    height: 100vh;
+    padding-top: 1rem;
     position: relative;
+}
+
+.scroll-hint {
+    display: flex;
+    justify-content: center;
+    margin: 4rem auto 2rem;
+    color: #606060;
+    user-select: none;
+    animation: scroll-hint-fade 1.6s ease-out 0.4s both;
+}
+
+.scroll-hint-arrow {
+    font-size: 2.5rem;
+    line-height: 1;
+    animation: scroll-hint-bounce 1.6s ease-in-out infinite;
+}
+
+.timeline-flow {
+    position: absolute;
+    top: calc(1rem + 163px - 1px);
+    left: 0;
+    right: 0;
+    height: 2px;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.timeline-flow-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(24, 23, 23, 0.65) 45%,
+        rgba(24, 23, 23, 0.95) 50%,
+        rgba(24, 23, 23, 0.65) 55%,
+        transparent 100%);
+    filter: blur(0.5px);
+    animation: timeline-flow 3.2s linear infinite;
+}
+
+.timeline-flow-arrow {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    font-size: 1.6rem;
+    line-height: 1;
+    color: #181717;
+    font-weight: 600;
+    animation: timeline-flow-arrow 3.2s linear infinite;
+}
+
+@keyframes timeline-flow {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(600%); }
+}
+
+@keyframes timeline-flow-arrow {
+    from { left: 0%;   opacity: 0; }
+    8%   { opacity: 1; }
+    92%  { opacity: 1; }
+    to   { left: 100%; opacity: 0; }
+}
+
+@keyframes scroll-hint-bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50%      { transform: translateY(6px); opacity: 1; }
+}
+
+@keyframes scroll-hint-fade {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-hint-arrow,
+    .scroll-hint,
+    .timeline-flow-pulse,
+    .timeline-flow-arrow {
+        animation: none;
+    }
 }
 
 .about-introduction-container {
     display: flex;
     flex-direction: row;
-    gap: 150px;
-    padding: 0 300px
+    align-items: flex-start;
+    gap: clamp(2rem, 6vw, 100px);
+    padding: 0 clamp(1.5rem, 8vw, 200px);
+    box-sizing: border-box;
 }
 
 .about-text-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    flex: 3;
+    gap: 1.5rem;
+    flex: 1 1 60%;
+    min-width: 0;
 }
 
 .about-text-content h1 {
-    font-size: 2.5em;
-    margin-bottom: 0.5em;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1.1;
+    margin: 0;
+}
+
+.about-text-content h1 + h1 {
+    margin-top: 0.25rem;
 }
 
 .about-text-content p {
-    flex: 1;
-    font-size: 1.2em;
-    line-height: 1.4;
+    font-size: 1.1rem;
+    line-height: 1.5;
     color: #606060;
+    margin: 0;
 }
 
 .about-image-container {
-    padding: 2rem;
+    flex: 0 1 421px;
     display: flex;
-    align-items: center;
-    justify-content: end;
-    flex: 2;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 0.5rem;
 }
 
 .about-image-container img {
-    width: 421px;
+    width: 100%;
+    max-width: 421px;
+    height: auto;
     border-radius: 10px;
-    object-fit:cover;
+    object-fit: cover;
+}
+
+@media (max-width: 900px) {
+    .about-introduction-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .about-image-container {
+        flex: 1 1 auto;
+        justify-content: center;
+    }
 }
 
 .timeline-container{
@@ -65,6 +173,12 @@
     overflow-x: auto;
     white-space: nowrap;
     width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.timeline-container::-webkit-scrollbar {
+    display: none;
 }
 
 .timeline-content-container {
@@ -81,6 +195,8 @@
 
 .timeline-content-container.bottom{
     border-top: #606060 1px solid;
+    box-sizing: border-box;
+    padding-top: 1rem;
 }
 
 .timeline-content-year {

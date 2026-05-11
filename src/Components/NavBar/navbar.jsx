@@ -1,56 +1,70 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './navbar.css';
-import logo from '../Assets/logo_kc.svg'
+import logo from '../Assets/logo_kc.svg';
 import { useScroll, motion, useMotionValueEvent } from 'motion/react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
+    const { pathname } = useLocation();
+    const ref = useRef(null);
+    const { scrollYProgress } = useScroll({ target: ref });
 
-    const [menu, setMenu] = useState("");
-    const navigate = useNavigate()
-    const ref = useRef(null)
-    const {scrollYProgress} = useScroll({
-      target : ref,
-    })
+    const [scrolledClass, setScrolledClass] = useState('');
+    const [mobileOpen, setMobileOpen] = useState(false);
 
-    const [scrolledClass, setScrolledClass] = useState("");
-    useMotionValueEvent(scrollYProgress, "change", (pos) => {
-        setScrolledClass(pos === 0 ? "" : "scrolled");
+    useMotionValueEvent(scrollYProgress, 'change', (pos) => {
+        setScrolledClass(pos === 0 ? '' : 'scrolled');
     });
 
-    const handleNavigate = (pathName) => {
-      setMenu(pathName)
-      navigate("/"+pathName)
-    }
-    
+    useEffect(() => {
+        setMobileOpen(false);
+    }, [pathname]);
+
+    const isActive = (path) => pathname === path || pathname.startsWith(`${path}/`);
+
     return (
-        <motion.div className={`navbar ${scrolledClass}`}>
+        <motion.div className={`navbar ${scrolledClass} ${mobileOpen ? 'mobile-open' : ''}`}>
             <div className='nav-logo'>
-                <img onClick={() => {handleNavigate("")}} src={logo} alt=''/>
+                <Link to="/" aria-label="Home">
+                    <img src={logo} alt="KC Teng logo" />
+                </Link>
             </div>
 
             <ul className='nav-menu'>
-                <li  className={menu === "about" ? "active" : ""}
-                     onClick={() => {handleNavigate("about")}}>
-                        About
+                <li className={isActive('/about') ? 'active' : ''}>
+                    <Link to="/about">About</Link>
                 </li>
-
-                <li  className={menu === "projects" ? "active" : ""}
-                     onClick={() => {handleNavigate("projects")}}>
-                        Projects
+                <li className={isActive('/projects') ? 'active' : ''}>
+                    <Link to="/projects">Projects</Link>
                 </li>
-
             </ul>
 
-            <div id="nav-icon1">
+            <button
+                type="button"
+                id="nav-icon1"
+                className={mobileOpen ? 'open' : ''}
+                aria-label="Toggle menu"
+                aria-expanded={mobileOpen}
+                aria-controls="mobile-menu"
+                onClick={() => setMobileOpen((v) => !v)}
+            >
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
+
+            {mobileOpen && (
+                <ul id="mobile-menu" className='mobile-menu'>
+                    <li className={isActive('/about') ? 'active' : ''}>
+                        <Link to="/about">About</Link>
+                    </li>
+                    <li className={isActive('/projects') ? 'active' : ''}>
+                        <Link to="/projects">Projects</Link>
+                    </li>
+                </ul>
+            )}
         </motion.div>
-
     );
-
-}
+};
 
 export default Navbar;

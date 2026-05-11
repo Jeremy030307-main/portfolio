@@ -21,13 +21,14 @@
     align-items: center;
 }
 
-.project-more p{
+.project-more a {
     cursor: pointer;
     display: inline-block;
     text-decoration: underline;
+    color: inherit;
 }
 
-.project-more p:hover{
+.project-more a:hover {
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
