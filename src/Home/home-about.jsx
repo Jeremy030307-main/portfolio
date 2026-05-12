@@ -1,9 +1,12 @@
 import './home-about.css';
 import 'animate.css';
 import side_head from '../Components/Assets/side-head.png';
+import side_head_dark from '../Components/Assets/side-head-black.png';
 import { Link } from 'react-router-dom';
+import useTheme from '../hooks/useTheme';
 
 const HomeAbout = () => {
+    const { theme } = useTheme();
     return (
         <div className='about-container'>
 
@@ -18,7 +21,7 @@ const HomeAbout = () => {
                     }}
                 >
                     <img
-                        src={side_head}
+                        src={theme === 'dark' ? side_head_dark : side_head}
                         alt="Stylized side-profile portrait of Teng"
                         style={{
                             width: "100%",
@@ -43,6 +46,11 @@ const HomeAbout = () => {
                     <h2>
                         A final-year software engineering student who trying to specialize in full stack development.
                     </h2>
+
+                    <div className='status-pill' role="status">
+                        <span className='status-dot' aria-hidden="true" />
+                        <span>Open to backend / full-stack internships &mdash; Jun 2026</span>
+                    </div>
 
                     <ul className='contact-method'>
                         <li>

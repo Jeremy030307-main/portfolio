@@ -25,7 +25,7 @@
     display: flex;
     justify-content: center;
     margin: 4rem auto 2rem;
-    color: #606060;
+    color: var(--text-secondary);
     user-select: none;
     animation: scroll-hint-fade 1.6s ease-out 0.4s both;
 }
@@ -54,9 +54,9 @@
     height: 100%;
     background: linear-gradient(90deg,
         transparent 0%,
-        rgba(24, 23, 23, 0.65) 45%,
-        rgba(24, 23, 23, 0.95) 50%,
-        rgba(24, 23, 23, 0.65) 55%,
+        rgba(var(--pulse-color), 0.65) 45%,
+        rgba(var(--pulse-color), 0.95) 50%,
+        rgba(var(--pulse-color), 0.65) 55%,
         transparent 100%);
     filter: blur(0.5px);
     animation: timeline-flow 3.2s linear infinite;
@@ -69,7 +69,7 @@
     transform: translate(0, -50%);
     font-size: 1.6rem;
     line-height: 1;
-    color: #181717;
+    color: var(--text);
     font-weight: 600;
     animation: timeline-flow-arrow 3.2s linear infinite;
 }
@@ -106,65 +106,128 @@
 }
 
 .about-introduction-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: clamp(2rem, 6vw, 100px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+        "headings    image"
+        "description image";
+    align-items: start;
+    column-gap: clamp(2rem, 6vw, 100px);
+    row-gap: 1.5rem;
     padding: 0 clamp(1.5rem, 8vw, 200px);
     box-sizing: border-box;
 }
 
-.about-text-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    flex: 1 1 60%;
+.about-headings {
+    grid-area: headings;
     min-width: 0;
 }
 
-.about-text-content h1 {
+.about-headings h1 {
     font-size: clamp(2rem, 4vw, 3.25rem);
     line-height: 1.1;
     margin: 0;
 }
 
-.about-text-content h1 + h1 {
+.about-headings h1 + h1 {
     margin-top: 0.25rem;
 }
 
-.about-text-content p {
+.about-description {
+    grid-area: description;
+    min-width: 0;
+}
+
+.about-description p {
     font-size: 1.1rem;
     line-height: 1.5;
-    color: #606060;
+    color: var(--text-secondary);
     margin: 0;
 }
 
 .about-image-container {
-    flex: 0 1 421px;
+    grid-area: image;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding-top: 0.5rem;
+    align-items: center;
+    align-self: center;
 }
 
 .about-image-container img {
     width: 100%;
-    max-width: 421px;
-    height: auto;
+    max-width: 340px;
+    aspect-ratio: 4 / 5;
     border-radius: 10px;
     object-fit: cover;
+    object-position: center 40%;
 }
 
 @media (max-width: 900px) {
     .about-introduction-container {
-        flex-direction: column;
-        align-items: stretch;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "headings"
+            "image"
+            "description";
+        row-gap: 1.5rem;
     }
+}
 
-    .about-image-container {
-        flex: 1 1 auto;
-        justify-content: center;
-    }
+.skills-section {
+    padding: 5rem clamp(1.5rem, 8vw, 200px) 1rem;
+    box-sizing: border-box;
+}
+
+.skills-heading {
+    margin: 0 0 2rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+}
+
+.skills-group-title {
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin: 0 0 1rem;
+    font-weight: 500;
+}
+
+.skills-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.85rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: var(--surface);
+    font-size: 0.92rem;
+    color: var(--text);
+    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.skill-chip:hover {
+    transform: translateY(-2px);
+    background: var(--surface-hover);
+    border-color: var(--text-secondary);
+}
+
+.skill-chip i {
+    color: var(--text-secondary);
 }
 
 .timeline-container{
@@ -190,11 +253,11 @@
 }
 
 .timeline-content-container.top {
-    border-bottom: #606060 1px solid;
+    border-bottom: var(--text-secondary) 1px solid;
 }
 
 .timeline-content-container.bottom{
-    border-top: #606060 1px solid;
+    border-top: var(--text-secondary) 1px solid;
     box-sizing: border-box;
     padding-top: 1rem;
 }
@@ -202,7 +265,7 @@
 .timeline-content-year {
     font-weight: 400;
     font-size: 57px;
-    color: #BFBFBF;
+    color: var(--text-muted);
     transform: rotate(-90deg);
     padding: 0;
     margin: 0;

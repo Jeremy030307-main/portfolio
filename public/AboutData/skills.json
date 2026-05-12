@@ -1,0 +1,36 @@
+[
+  {
+    "category": "Languages",
+    "skills": [
+      { "name": "JavaScript", "icon": "fa-brands fa-js" },
+      { "name": "Python", "icon": "fa-brands fa-python" },
+      { "name": "Java", "icon": "fa-brands fa-java" },
+      { "name": "Swift", "icon": "fa-brands fa-swift" },
+      { "name": "HTML5", "icon": "fa-brands fa-html5" },
+      { "name": "CSS3", "icon": "fa-brands fa-css3-alt" },
+      { "name": "SQL", "icon": "fa-solid fa-database" }
+    ]
+  },
+  {
+    "category": "Frameworks & Libraries",
+    "skills": [
+      { "name": "React", "icon": "fa-brands fa-react" },
+      { "name": "Node.js", "icon": "fa-brands fa-node-js" },
+      { "name": "Express", "icon": "fa-solid fa-server" },
+      { "name": "Flask", "icon": "fa-solid fa-flask" },
+      { "name": "UIKit", "icon": "fa-solid fa-mobile-screen" },
+      { "name": "Core Data", "icon": "fa-solid fa-cube" }
+    ]
+  },
+  {
+    "category": "Tools & Platforms",
+    "skills": [
+      { "name": "Git", "icon": "fa-brands fa-git-alt" },
+      { "name": "GitHub", "icon": "fa-brands fa-github" },
+      { "name": "Firebase", "icon": "fa-solid fa-fire" },
+      { "name": "SQLite", "icon": "fa-solid fa-database" },
+      { "name": "Xcode", "icon": "fa-brands fa-app-store-ios" },
+      { "name": "Figma", "icon": "fa-brands fa-figma" }
+    ]
+  }
+]

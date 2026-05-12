@@ -8,20 +8,20 @@ const ProjectContainer = ({ index, projectName, projectDescription, projectTechS
     return (
         <div className="project-container">
 
-            <div className="project-text-container">
-                <div>
-                    <h2>{String(index + 1).padStart(2, '0')}/ {projectName}</h2>
-                    <p>{projectDescription}</p>
-                    <p>{techStack}</p>
-                </div>
-
-                <div className="project-more">
-                    <Link to={`/projects/${projectSlug(projectName)}`}>More on this project &#8599;</Link>
-                </div>
-            </div>
+            <h2 className="project-title">
+                {String(index + 1).padStart(2, '0')}/ {projectName}
+            </h2>
 
             <div className="project-image-container">
                 <img src={projectImage} alt={`${projectName} preview`} />
+            </div>
+
+            <div className="project-body">
+                <p>{projectDescription}</p>
+                <p>{techStack}</p>
+                <div className="project-more">
+                    <Link to={`/projects/${projectSlug(projectName)}`}>More on this project &#8599;</Link>
+                </div>
             </div>
 
         </div>

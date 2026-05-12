@@ -1,10 +1,42 @@
+:root {
+  --bg: #eeeeee;
+  --text: #181717;
+  --text-secondary: #606060;
+  --text-muted: #BFBFBF;
+  --border: #ccc;
+  --border-strong: #c2c2c2;
+  --surface: #f6f6f6;
+  --surface-hover: #ebebeb;
+  --accent: rgb(61, 136, 221);
+  --nav-bg: rgba(238, 238, 238, 0.97);
+  --shadow: 0 0.5px 1px #aeadad;
+  --pulse-color: 24, 23, 23;
+}
+
+[data-theme="dark"] {
+  --bg: #161616;
+  --text: #ededed;
+  --text-secondary: #a8a8a8;
+  --text-muted: #555;
+  --border: #2c2c2c;
+  --border-strong: #3a3a3a;
+  --surface: #1f1f1f;
+  --surface-hover: #262626;
+  --accent: #6aa9ff;
+  --nav-bg: rgba(22, 22, 22, 0.92);
+  --shadow: 0 0.5px 1px #000;
+  --pulse-color: 237, 237, 237;
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #eeeeee;
+  background-color: var(--bg);
+  color: var(--text);
   font-family: 'DM Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   font-style: normal;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 code {
@@ -13,19 +45,17 @@ code {
 }
 
 h1{
-    /* Heading-1 */
-  font-family: 'DM Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-family: 'DM Sans', system-ui, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 60px;
   line-height: 97.2%;
   letter-spacing: -0.03em;
-  color: #000000;
+  color: var(--text);
 }
 
 h2{
-  /* Heading-2 */
-  font-family: 'DM Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-family: 'DM Sans', system-ui, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 32px;
@@ -33,6 +63,5 @@ h2{
   display: flex;
   align-items: flex-end;
   letter-spacing: -0.03em;
-  /* Main Black */
-  color: #181717;
+  color: var(--text);
 }

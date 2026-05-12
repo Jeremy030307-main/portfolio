@@ -3,11 +3,13 @@ import './navbar.css';
 import logo from '../Assets/logo_kc.svg';
 import { useScroll, motion, useMotionValueEvent } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
+import useTheme from '../../hooks/useTheme';
 
 const Navbar = () => {
     const { pathname } = useLocation();
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({ target: ref });
+    const { theme, toggle } = useTheme();
 
     const [scrolledClass, setScrolledClass] = useState('');
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -21,6 +23,17 @@ const Navbar = () => {
     }, [pathname]);
 
     const isActive = (path) => pathname === path || pathname.startsWith(`${path}/`);
+
+    const themeButton = (
+        <button
+            type="button"
+            className='theme-toggle'
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            onClick={toggle}
+        >
+            <i className={theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon'} />
+        </button>
+    );
 
     return (
         <motion.div className={`navbar ${scrolledClass} ${mobileOpen ? 'mobile-open' : ''}`}>
@@ -37,21 +50,27 @@ const Navbar = () => {
                 <li className={isActive('/projects') ? 'active' : ''}>
                     <Link to="/projects">Projects</Link>
                 </li>
+                <li className='nav-theme-item'>
+                    {themeButton}
+                </li>
             </ul>
 
-            <button
-                type="button"
-                id="nav-icon1"
-                className={mobileOpen ? 'open' : ''}
-                aria-label="Toggle menu"
-                aria-expanded={mobileOpen}
-                aria-controls="mobile-menu"
-                onClick={() => setMobileOpen((v) => !v)}
-            >
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div className='nav-mobile-actions'>
+                {themeButton}
+                <button
+                    type="button"
+                    id="nav-icon1"
+                    className={mobileOpen ? 'open' : ''}
+                    aria-label="Toggle menu"
+                    aria-expanded={mobileOpen}
+                    aria-controls="mobile-menu"
+                    onClick={() => setMobileOpen((v) => !v)}
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
 
             {mobileOpen && (
                 <ul id="mobile-menu" className='mobile-menu'>

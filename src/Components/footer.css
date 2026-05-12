@@ -10,7 +10,7 @@ footer div {
 }
 
 .footer-text {
-    color: rgb(61, 136, 221);
+    color: var(--accent);
 }
 
 .footer-links {
