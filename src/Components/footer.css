@@ -2,7 +2,10 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3rem 10rem;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  padding: 3rem clamp(1.5rem, 8vw, 10rem);
+  box-sizing: border-box;
 }
 
 footer div {
@@ -16,7 +19,8 @@ footer div {
 .footer-links {
   list-style: none;
   display: flex;
-  gap: 3rem;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 4vw, 3rem);
   margin: 0;
   padding: 0;
 }
@@ -32,6 +36,6 @@ footer div {
   text-decoration: underline;
 }
 
-.footer-links li:active  {
-    transform: scale(0.95); /* Press-down effect */
+.footer-links li:active {
+  transform: scale(0.95);
 }

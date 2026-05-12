@@ -6,6 +6,12 @@
     "skillset": "Swift, Firebase, UIKit, CoreData"
   },
   {
+    "image": "https://i.imgur.com/8z6TOvW.png",
+    "title": "Brewey",
+    "description": "A coffee tracking mobile app and FastAPI backend that lets specialty coffee drinkers catalogue their bean inventory, log brew recipes (V60, AeroPress, Espresso, etc.), and watch personal stats — day streak, average rating, coffees owned — grow over time. Designed end-to-end in Figma and built as a cross-platform React Native app backed by Supabase.",
+    "skillset": "React Native, Expo, TypeScript, FastAPI, Python, Supabase (Postgres + Auth + RLS), React Navigation, React Query, Figma"
+  },
+  {
     "image": "https://i.imgur.com/oFIh4X6.png",
     "title": "EcoStyle",
     "description": "A modern clothing brand built on sustainability. EcoStyle uses responsibly sourced materials and introduces a smart EcoPoint system that helps users track the carbon footprint of their purchases — from shipping to production — encouraging conscious fashion choices that make a real impact.",
@@ -29,4 +35,5 @@
     "description": "An implementation of the UC Berkeley CS188 Pacman AI project, exploring various AI techniques to control Pacman in different game scenarios. The project includes agents that utilize search algorithms, adversarial strategies, probabilistic reasoning, and decision-making under uncertainty.",
     "skillset": "Python, Search Algorithms (DFS, BFS, A*, UCS), Minimax, Alpha-Beta Pruning, MDPs, Bayesian Networks, Neural Networks"
   }
+
 ]

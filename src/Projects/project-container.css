@@ -4,7 +4,7 @@
     grid-template-areas:
         "title image"
         "body  image";
-    gap: clamp(1.5rem, 5vw, 80px);
+    gap: clamp(1.5rem, 1vw, 60px);
     width: 100%;
     box-sizing: border-box;
     align-items: start;

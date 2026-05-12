@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import './navbar.css';
 import logo from '../Assets/logo_kc.svg';
+import darkLogo from '../Assets/logo_kc_dark.svg';
 import { useScroll, motion, useMotionValueEvent } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
 import useTheme from '../../hooks/useTheme';
@@ -39,7 +40,7 @@ const Navbar = () => {
         <motion.div className={`navbar ${scrolledClass} ${mobileOpen ? 'mobile-open' : ''}`}>
             <div className='nav-logo'>
                 <Link to="/" aria-label="Home">
-                    <img src={logo} alt="KC Teng logo" />
+                    <img src={theme === 'dark' ? darkLogo: logo} alt="KC Teng logo" />
                 </Link>
             </div>
 

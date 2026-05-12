@@ -1,0 +1,91 @@
+{
+  "id": "6",
+  "title": "Brewey",
+  "summary": "A cross-platform coffee experience tracker. Specialty coffee drinkers catalogue their beans, log brews with full recipe detail, and surface insights like day streak, average rating, and remaining grams per bag — all in a Figma-designed React Native app backed by a FastAPI + Supabase stack.",
+  "overview": "Brewey turns the daily ritual of brewing coffee into a personal data product. Users sign up, walk through a short onboarding flow that captures their coffee journey, growth goal, and experience level, then land in a five-tab app: Home (greeting + quick stats + recent activity), Brew (log a new recipe with method, dose, yield, time, rating), Coffee (inventory with weight progress bars and filters by Blend or Single Origin), Insight (a personalised brews-over-time chart), and Profile. The mobile client is a TypeScript React Native app built with Expo and React Navigation, talking to a FastAPI service that acts as a thin proxy in front of Supabase — forwarding the user's JWT so RLS policies in Postgres enforce per-user data isolation. Logging a brew automatically decrements the parent coffee's remaining grams, so the inventory stays accurate without manual upkeep.",
+  "technologies": "React Native, Expo, TypeScript, FastAPI, Python, Supabase (Postgres + Auth + RLS), React Navigation, React Query, Axios, Figma",
+  "thumbnail": "https://i.imgur.com/8z6TOvW.png",
+  "githubLinks": [
+    { "label": "Mobile", "url": "https://github.com/Jeremy030307-main/brewey_mobile" },
+    { "label": "Backend", "url": "https://github.com/Jeremy030307-main/brewey_backend" }
+  ],
+  "liveDemoLink": "",
+  "keyFeatures": [
+    {
+      "title": "Coffee Inventory with Weight Tracking",
+      "description": "Catalogue every bag with roaster, origin, variety, process, and roast level. Each card shows a live progress bar of grams remaining, decremented automatically every time a brew is logged."
+    },
+    {
+      "title": "Brew Logging with Full Recipe Detail",
+      "description": "Capture method (V60, AeroPress, Espresso, French Press, Chemex, Moka), dose, yield, grind, time, rating, and notes — then revisit history per coffee to dial in your recipe."
+    },
+    {
+      "title": "Personal Stats & Streaks",
+      "description": "Day streak, average rating, and active coffee count are computed server-side from brew history, surfaced on Home and Profile, and updated reactively after every action."
+    },
+    {
+      "title": "Onboarding Flow That Shapes the App",
+      "description": "Three-step onboarding captures the user's journey, growth goal, and experience level, persisted on the profile so future features can tailor tips and recommendations."
+    },
+    {
+      "title": "End-to-End Auth with Supabase + RLS",
+      "description": "Email/password auth via Supabase, JWT forwarded through the FastAPI backend, and row-level security policies on every table so users only ever see their own data."
+    },
+    {
+      "title": "Figma-Driven Visual Design",
+      "description": "Full design system — sage green primary, warm beige background, dark coffee accents, generous radii — translated from a multi-screen Figma file into a reusable React Native theme and component library."
+    }
+  ],
+  "challenges": [
+    {
+      "title": "Choosing the Right Backend Pattern",
+      "description": "Iterated between a service-role backend that verifies JWTs itself and a thin proxy that forwards the user's token and lets Supabase RLS do the work. Landed on the proxy pattern — simpler, more secure, and lets the database stay the single source of truth for authorization."
+    },
+    {
+      "title": "Designing the Data Model for Live Inventory",
+      "description": "Coffees, brews, and profiles needed schemas that supported automatic weight decrement on each brew, per-user filtering, and computed aggregates — without leaking data across users or requiring expensive queries on every screen load."
+    },
+    {
+      "title": "Cross-Platform Layout from a Static Design",
+      "description": "Translating fixed-frame Figma layouts into responsive React Native components — handling status-bar insets, scroll behaviours (e.g. the Home greeting scrolling with the page), and rounded hero corners — while keeping the visual identity intact on both iOS and Android."
+    },
+    {
+      "title": "Local + LAN Development Setup",
+      "description": "Wiring Expo Go on a physical phone to a FastAPI backend running on the Mac required reasoning about LAN IPs, uvicorn host binding, and Expo's environment-variable lifecycle — and documenting the gotchas so future dev sessions don't re-discover them."
+    },
+    {
+      "title": "Server State Management on Mobile",
+      "description": "Coordinating React Query caches across screens so that logging a brew on one tab refreshes stats, inventory, and recent activity everywhere else — without manual refresh and without redundant network calls."
+    }
+  ],
+  "techStacks": [
+    {
+      "name": "React Native + Expo",
+      "description": "Cross-platform mobile runtime; managed workflow keeps iteration fast and supports physical-device testing via Expo Go."
+    },
+    {
+      "name": "TypeScript",
+      "description": "End-to-end type safety from API client through screens, with strongly typed navigation params for every route."
+    },
+    {
+      "name": "React Navigation",
+      "description": "Native-stack for auth flow and bottom tabs for the main app, with nested stacks for Coffee and Brew that support modal presentation."
+    },
+    {
+      "name": "React Query",
+      "description": "Server state, caching, and invalidation — mutations on brew/coffee actions reactively refresh stats and inventory without manual refetches."
+    },
+    {
+      "name": "FastAPI",
+      "description": "Python backend exposing /me, /coffees, /brews, and /stats; acts as a thin proxy that forwards user JWTs to Supabase and computes aggregates server-side."
+    },
+    {
+      "name": "Supabase (Postgres + Auth + RLS)",
+      "description": "Auth, database, and authorization. Row-level security policies on every table guarantee per-user data isolation regardless of which client makes the call."
+    },
+    {
+      "name": "Figma",
+      "description": "Source of truth for the visual design system — colours, typography, spacing, and per-screen layouts, translated into a reusable RN theme and component library."
+    }
+  ]
+}

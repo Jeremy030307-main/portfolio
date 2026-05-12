@@ -1,11 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import './about.css';
-import me from '../Components/Assets/me.png';
+import me_transparent from '../Components/Assets/me_transparent.png';
 
 const About = () => {
     const [timeline, setTimeline] = useState([]);
     const [skills, setSkills] = useState([]);
     const [error, setError] = useState(null);
+    const [scrollDistance, setScrollDistance] = useState(0);
+
+    const slideWrapperRef = useRef(null);
+    const stickyRef = useRef(null);
+    const trackRef = useRef(null);
 
     useEffect(() => {
         Promise.all([
@@ -25,6 +31,25 @@ const About = () => {
             .catch((err) => setError(`Failed to load ${err.message}`));
     }, []);
 
+    useEffect(() => {
+        const measure = () => {
+            if (!trackRef.current || !stickyRef.current) return;
+            const trackWidth = trackRef.current.scrollWidth;
+            const viewportWidth = stickyRef.current.offsetWidth;
+            setScrollDistance(Math.max(0, trackWidth - viewportWidth));
+        };
+        measure();
+        window.addEventListener('resize', measure);
+        return () => window.removeEventListener('resize', measure);
+    }, [timeline]);
+
+    const { scrollYProgress } = useScroll({
+        target: slideWrapperRef,
+        offset: ['start start', 'end end'],
+    });
+
+    const x = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance]);
+
     return (
         <div className="about-page-container">
 
@@ -36,7 +61,7 @@ const About = () => {
                 </div>
 
                 <div className='about-image-container'>
-                    <img src={me} alt="Portrait of Teng Kong Cheng" />
+                    <img src={me_transparent} alt="Portrait of Teng Kong Cheng" />
                 </div>
 
                 <div className='about-description'>
@@ -74,53 +99,64 @@ const About = () => {
                 <span className='material-symbols-outlined scroll-hint-arrow'>keyboard_arrow_down</span>
             </div>
 
-            <div className='about-slide'>
-                <div className="timeline-container">
+            <div
+                className='about-slide-wrapper'
+                ref={slideWrapperRef}
+                style={{ height: `calc(100vh + ${scrollDistance}px)` }}
+            >
+                <div className='about-slide-sticky' ref={stickyRef}>
+                    <div className='timeline-stack'>
+                        <h2 className='timeline-heading'>Journey</h2>
+                        <div className='timeline-with-flow'>
+                            <motion.div className='timeline-container' ref={trackRef} style={{ x }}>
 
-                    <div className='timeline-content-wrapper' aria-hidden="true">
-                        <div className='timeline-content-empty' />
-                        <div className='timeline-content-container bottom timeline-spacer' />
-                    </div>
+                        <div className='timeline-content-wrapper' aria-hidden="true">
+                            <div className='timeline-content-empty' />
+                            <div className='timeline-content-container bottom timeline-spacer' />
+                        </div>
 
-                    {timeline.map((item, index) => {
-                        const position = index % 2 === 0 ? 'top' : 'bottom';
-                        const content = (
-                            <div className={`timeline-content-container ${position}`}>
-                                <div className='timeline-content-year'><p>{item.year}</p></div>
-                                <div className='timeline-content-description'>
-                                    <h2>{item.title}</h2>
-                                    <p>{item.description}</p>
+                        {timeline.map((item, index) => {
+                            const position = index % 2 === 0 ? 'top' : 'bottom';
+                            const content = (
+                                <div className={`timeline-content-container ${position}`}>
+                                    <div className='timeline-content-year'><p>{item.year}</p></div>
+                                    <div className='timeline-content-description'>
+                                        <h2>{item.title}</h2>
+                                        <p>{item.description}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        );
+                            );
 
-                        return (
-                            <div className='timeline-content-wrapper' key={index}>
-                                {position === 'top' ? (
-                                    <>
-                                        {content}
-                                        <div className='timeline-content-empty' />
-                                    </>
-                                ) : (
-                                    <>
-                                        <div className='timeline-content-empty' />
-                                        {content}
-                                    </>
-                                )}
-                            </div>
-                        );
-                    })}
+                            return (
+                                <div className='timeline-content-wrapper' key={index}>
+                                    {position === 'top' ? (
+                                        <>
+                                            {content}
+                                            <div className='timeline-content-empty' />
+                                        </>
+                                    ) : (
+                                        <>
+                                            <div className='timeline-content-empty' />
+                                            {content}
+                                        </>
+                                    )}
+                                </div>
+                            );
+                        })}
 
-                    <div className='timeline-content-wrapper' aria-hidden="true">
-                        <div className='timeline-content-empty' />
-                        <div className='timeline-content-container bottom timeline-spacer' />
+                        <div className='timeline-content-wrapper' aria-hidden="true">
+                            <div className='timeline-content-empty' />
+                            <div className='timeline-content-container bottom timeline-spacer' />
+                        </div>
+
+                            </motion.div>
+
+                            <div className='timeline-flow' aria-hidden="true">
+                                <span className='timeline-flow-pulse' />
+                                <span className='timeline-flow-arrow'>&rsaquo;</span>
+                            </div>
+                        </div>
                     </div>
-
-                </div>
-
-                <div className='timeline-flow' aria-hidden="true">
-                    <span className='timeline-flow-pulse' />
-                    <span className='timeline-flow-arrow'>&rsaquo;</span>
                 </div>
             </div>
 

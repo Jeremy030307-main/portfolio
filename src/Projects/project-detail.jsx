@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './project-detail.css';
 import { useEffect, useState } from 'react';
 import Collapsible from 'react-collapsible';
@@ -56,7 +56,11 @@ const ProjectDetail = () => {
 
   return (
     <div className="project-detail-container">
-      <h1>{String(projectData.id).padStart(2, '0')}/ {projectData.title}</h1>
+      <Link to="/projects" className="back-to-projects">
+        <span aria-hidden="true">&larr;</span> Back to projects
+      </Link>
+
+      <h1>/ {projectData.title}</h1>
 
       <div className="project-header-content">
         <div>
@@ -70,11 +74,17 @@ const ProjectDetail = () => {
           </div>
 
           <div className="project-link">
-            {projectData.githubLink && (
-              <a href={projectData.githubLink} target="_blank" rel="noopener noreferrer">
-                Github &#8599;
-              </a>
-            )}
+            {Array.isArray(projectData.githubLinks)
+              ? projectData.githubLinks.map((link) => (
+                  <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">
+                    {link.label || 'Github'} &#8599;
+                  </a>
+                ))
+              : projectData.githubLink && (
+                  <a href={projectData.githubLink} target="_blank" rel="noopener noreferrer">
+                    Github &#8599;
+                  </a>
+                )}
 
             {projectData.liveDemoLink && (
               <a href={projectData.liveDemoLink} target="_blank" rel="noopener noreferrer">

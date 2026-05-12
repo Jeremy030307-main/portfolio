@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    padding: 6% clamp(1.5rem, 8vw, 180px) 0;
+    padding: max(120px, 6%) clamp(1.5rem, 8vw, 180px) 0;
     box-sizing: border-box;
 }
 
@@ -17,7 +17,7 @@
 .project-divider {
   border: none;
   border-bottom: 1px solid var(--border);
-  margin: 1.5rem 0;
+  margin: 3rem 0;
 }
 
 

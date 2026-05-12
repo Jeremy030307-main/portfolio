@@ -63,7 +63,7 @@ const HomeProject = () => {
                             </div>
 
                             <div className='home-project-link'>
-                                <Link to={`/projects/${projectSlug(project.title)}`}>More on this project &#8599;</Link>
+                                <Link to={`/projects/${String(index + 1).padStart(2, '0')}-${projectSlug(project.title)}`}>More on this project &#8599;</Link>
                             </div>
                         </motion.div>
                     </motion.div>
