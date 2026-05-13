@@ -49,7 +49,7 @@ const HomeAbout = () => {
 
                     <div className='status-pill' role="status">
                         <span className='status-dot' aria-hidden="true" />
-                        <span>Open to backend / full-stack internships &mdash; Jun 2026</span>
+                        <span>Open to full-time backend / full-stack software engineer  &mdash; July 2026</span>
                     </div>
 
                     <ul className='contact-method'>
