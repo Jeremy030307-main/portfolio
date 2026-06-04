@@ -6,6 +6,7 @@ import Home from './Home/home';
 import Project from './Projects/project';
 import ProjectDetail from './Projects/project-detail';
 import About from './About/about';
+import EcoRoute from './EcoRoute/ecoroute';
 import ScrollToTop from './Components/scrollToTop';
 import Footer from './Components/footer';
 import NotFound from './Components/NotFound';
@@ -21,6 +22,7 @@ const AnimatedRoutes = () => {
         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
         <Route path="/projects" element={<PageTransition><Project /></PageTransition>} />
         <Route path="/projects/:projectName" element={<PageTransition><ProjectDetail /></PageTransition>} />
+        <Route path="/ecoroute" element={<PageTransition><EcoRoute /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
