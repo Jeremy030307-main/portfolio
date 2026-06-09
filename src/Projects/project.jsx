@@ -2,6 +2,7 @@ import React from 'react';
 import './project.css';
 import ProjectContainer from './project-container';
 import useProjects from '../hooks/useProjects';
+import Reveal from '../Components/Reveal';
 
 const Project = () => {
     const { projects, error, loading } = useProjects();
@@ -9,12 +10,13 @@ const Project = () => {
     return (
         <div className="projects-window">
 
-            <div className='project-header'>
+            <header className='project-header'>
+                <p className="eyebrow">Work</p>
                 <h1>Projects.</h1>
                 <p className="project-lead">
-                    A selection of things I've designed, built, and shipped — from native iOS apps to game AI.
+                    A selection of things I've designed, built, and shipped, from native iOS apps to game AI.
                 </p>
-            </div>
+            </header>
 
             <div>
                 {loading && <p>Loading projects…</p>}
@@ -22,13 +24,16 @@ const Project = () => {
 
                 {projects.map((project, index) => (
                     <React.Fragment key={project.title}>
-                        <ProjectContainer
-                            index={index}
-                            projectName={project.title}
-                            projectDescription={project.description}
-                            projectTechStack={project.skillset}
-                            projectImage={project.image}
-                        />
+                        <Reveal>
+                            <ProjectContainer
+                                index={index}
+                                flip={index % 2 === 1}
+                                projectName={project.title}
+                                projectDescription={project.description}
+                                projectTechStack={project.skillset}
+                                projectImage={project.image}
+                            />
+                        </Reveal>
                         {index !== projects.length - 1 && <hr className="project-divider" />}
                     </React.Fragment>
                 ))}

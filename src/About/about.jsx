@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './about.css';
+import Reveal from '../Components/Reveal';
 import me_transparent from '../Components/Assets/me_transparent.png';
 
 const About = () => {
@@ -27,6 +28,16 @@ const About = () => {
 
     return (
         <div className="about-page">
+
+            {/* OPENING STATEMENT */}
+            <header className="about-intro">
+                <p className="eyebrow">About</p>
+                <h1 className="about-title">
+                    I'm a Software Engineering student who likes turning ideas into
+                    things people <span className="ink">actually use.</span>
+                </h1>
+            </header>
+
             <div className="about-grid">
 
                 {/* STICKY PROFILE */}
@@ -51,11 +62,9 @@ const About = () => {
 
                 {/* CONTENT */}
                 <div className="about-content">
-                    <section className="about-block">
-                        <p className="eyebrow">About</p>
-                        <h1 className="about-title">A Software Engineering student building efficient, user-friendly software.</h1>
+                    <Reveal className="about-block" as="section">
                         <p className="about-body about-lead">
-                            I work across full-stack web and backend systems — from React front-ends to
+                            I work across full-stack web and backend systems, from React front-ends to
                             Java and Node services. It started with a simple “Hello, World!”, and turned
                             into a habit of shipping real, useful projects.
                         </p>
@@ -63,9 +72,9 @@ const About = () => {
                             Beyond the code I care about clean design, working well in a team, and learning
                             constantly. I like challenges that push me a little past what I already know how to do.
                         </p>
-                    </section>
+                    </Reveal>
 
-                    <section className="about-block">
+                    <Reveal className="about-block" as="section">
                         <h2 className="h-sec">Skills &amp; tools</h2>
                         {error && <p role="alert">{error}</p>}
                         <dl className="skills">
@@ -80,9 +89,9 @@ const About = () => {
                                 </div>
                             ))}
                         </dl>
-                    </section>
+                    </Reveal>
 
-                    <section className="about-block">
+                    <Reveal className="about-block" as="section">
                         <h2 className="h-sec">Journey</h2>
                         <div className="timeline">
                             {timeline.map((item) => (
@@ -94,7 +103,7 @@ const About = () => {
                                 </div>
                             ))}
                         </div>
-                    </section>
+                    </Reveal>
                 </div>
 
             </div>

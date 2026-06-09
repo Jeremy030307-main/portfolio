@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 import './project-container.css';
 import { projectSlug } from '../utils/slug';
 
-const ProjectContainer = ({ index, projectName, projectDescription, projectTechStack, projectImage }) => {
+const ProjectContainer = ({ index, flip = false, projectName, projectDescription, projectTechStack, projectImage }) => {
     const techStack = Array.isArray(projectTechStack) ? projectTechStack.join(', ') : projectTechStack;
 
     return (
-        <div className="project-container">
+        <div className={`project-container${flip ? ' flip' : ''}`}>
 
             <h2 className="project-title">
                 <span className="project-num">{String(index + 1).padStart(2, '0')}/</span> {projectName}

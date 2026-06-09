@@ -1,188 +1,121 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
 import './home.css';
 import useProjects from '../hooks/useProjects';
 import { projectSlug } from '../utils/slug';
+import Reveal from '../Components/Reveal';
 import me_transparent from '../Components/Assets/me_transparent.png';
 
-const ABOUT_ICONS = [
+const FOCUS = [
     {
-        word: 'Hooping',
-        label: 'Basketball',
-        paths: [
-            { type: 'circle', cx: 12, cy: 12, r: 9 },
-            { d: 'M12 3 V21' },
-            { d: 'M3 12 H21' },
-            { d: 'M5.6 5.6 Q12 12 5.6 18.4' },
-            { d: 'M18.4 5.6 Q12 12 18.4 18.4' },
-        ],
+        k: '01',
+        title: 'Full-stack web',
+        body: 'React and React Native front-ends wired to Node, Express and FastAPI services.',
     },
     {
-        word: 'Over-caffeinated',
-        label: 'Coffee',
-        paths: [
-            { d: 'M6 8.5 H15 V14 a4 4 0 0 1 -4 4 H10 a4 4 0 0 1 -4 -4 Z' },
-            { d: 'M15 10 h2 a2.5 2.5 0 0 1 0 5 h-2' },
-            { d: 'M9 3.4 q -1 1.4 0 2.8' },
-            { d: 'M12 3.4 q -1 1.4 0 2.8' },
-        ],
+        k: '02',
+        title: 'Backend systems',
+        body: 'Java and Python services, REST APIs, auth and relational data done properly.',
     },
     {
-        word: 'Building things',
-        label: 'Code',
-        paths: [
-            { d: 'M8.5 8 L4 12 L8.5 16' },
-            { d: 'M15.5 8 L20 12 L15.5 16' },
-            { d: 'M13.4 6.5 L10.6 17.5' },
-        ],
-    },
-    {
-        word: 'Music always on',
-        label: 'Music',
-        paths: [
-            { d: 'M5 13 v-1 a7 7 0 0 1 14 0 v1' },
-            { d: 'M6.6 13 A1.8 1.8 0 0 1 8 14.7 V17.5 A1.8 1.8 0 0 1 4.4 17.5 V14.7 A1.8 1.8 0 0 1 6.6 13 Z' },
-            { d: 'M17.4 13 A1.8 1.8 0 0 0 16 14.7 V17.5 A1.8 1.8 0 0 0 19.6 17.5 V14.7 A1.8 1.8 0 0 0 17.4 13 Z' },
-        ],
-    },
-    {
-        word: 'Always exploring',
-        label: 'Travel',
-        paths: [
-            { d: 'M21 3 L3 10.5 L9.5 13 L12 20 Z' },
-            { d: 'M21 3 L9.5 13' },
-        ],
+        k: '03',
+        title: 'Shipping products',
+        body: 'End to end, from a Figma file to a real app people can actually open and use.',
     },
 ];
 
-const AboutMeArt = () => {
-    const [active, setActive] = useState(0);
-    const [prev, setPrev] = useState(-1);
-    const timerRef = useRef(null);
-
-    const reduceMotion =
-        typeof window !== 'undefined' &&
-        window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-
-    const startTimer = () => {
-        if (reduceMotion) return;
-        clearInterval(timerRef.current);
-        timerRef.current = setInterval(() => {
-            setActive((cur) => {
-                setPrev(cur);
-                return (cur + 1) % ABOUT_ICONS.length;
-            });
-        }, 2600);
-    };
-
-    useEffect(() => {
-        startTimer();
-        return () => clearInterval(timerRef.current);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    return (
-        <aside className="hero-art" aria-label="A little about me">
-            <div className="ln-stage">
-                {ABOUT_ICONS.map((icon, i) => {
-                    const cls =
-                        i === active ? 'ln-icon draw' : i === prev ? 'ln-icon erase' : 'ln-icon';
-                    return (
-                        <div className={cls} key={icon.word} data-word={icon.word}>
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                {icon.paths.map((p, j) =>
-                                    p.type === 'circle' ? (
-                                        <circle
-                                            className="ln"
-                                            key={j}
-                                            cx={p.cx}
-                                            cy={p.cy}
-                                            r={p.r}
-                                            pathLength="100"
-                                        />
-                                    ) : (
-                                        <path className="ln" key={j} d={p.d} pathLength="100" />
-                                    )
-                                )}
-                            </svg>
-                        </div>
-                    );
-                })}
-            </div>
-            <span className="ln-word show" key={ABOUT_ICONS[active].word}>
-                {ABOUT_ICONS[active].word}
-            </span>
-        </aside>
-    );
-};
-
 const Home = () => {
     const { projects, error } = useProjects();
-    const selected = projects.slice(0, 3);
+    const selected = projects.slice(0, 4);
 
     return (
         <div className="home">
 
             {/* HERO */}
-            <section className="home-hero">
-                <div className="hero-grid">
-                    <div className="hero-lead">
-                        <p className="eyebrow">Software Engineering Student · Monash Malaysia</p>
+            <section className="hero">
+                <p className="hero-eyebrow">
+                    <span className="dot" aria-hidden="true" />
+                    Open to full-time roles, July 2026
+                </p>
 
-                        <h1 className="display">
-                            Building <span className="green">useful</span>, well-made software.
-                        </h1>
+                <h1 className="hero-title">
+                    I build <span className="ink">useful,</span>
+                    <br />
+                    well-made <span className="ink">software.</span>
+                </h1>
 
-                        <div className="hero-meta">
-                            <img className="hero-portrait" src={me_transparent} alt="Portrait of Teng Kong Cheng" />
-                            <p>
-                                I'm Teng Kong Cheng (Jeremy) — a full-stack &amp; backend developer based in
-                                Malaysia who likes turning ideas into things people actually use. Open to
-                                full-time roles from July 2026.
-                            </p>
-                        </div>
-
-                        <div className="hero-cta">
-                            <Link to="/projects" className="btn btn-primary">
-                                View my work <span className="arr">↓</span>
-                            </Link>
-                            <a href="mailto:jeremy030307@gmail.com" className="btn">Get in touch</a>
-                        </div>
+                <div className="hero-foot">
+                    <div className="hero-id">
+                        <img className="hero-portrait" src={me_transparent} alt="Portrait of Teng Kong Cheng" />
+                        <p>
+                            Teng Kong Cheng <span className="alias">(Jeremy)</span>, a full-stack and backend
+                            developer and Software Engineering student at Monash University Malaysia.
+                        </p>
                     </div>
 
-                    <AboutMeArt />
+                    <div className="hero-cta">
+                        <Link to="/projects" className="btn btn-primary">View work</Link>
+                        <a href="mailto:jeremy030307@gmail.com" className="btn">Get in touch</a>
+                    </div>
                 </div>
             </section>
 
-            {/* RECENT WORK */}
-            <section className="home-work" id="work">
-                <div className="work-head">
-                    <h2 className="h-sec">Recent work</h2>
-                    <Link to="/projects" className="work-all">All projects ↗</Link>
-                </div>
-
-                {error && <p role="alert">Couldn't load projects: {error}</p>}
-
-                <div className="hi-list">
-                    {selected.map((project) => (
-                        <Link
-                            key={project.title}
-                            to={`/projects/${projectSlug(project.title)}`}
-                            className="hi-row"
-                        >
-                            <span className="hi-thumb">
-                                <img src={project.image} alt={`${project.title} preview`} />
-                            </span>
-                            <span className="hi-name">{project.title}</span>
-                            <span className="hi-desc">{project.tagline || project.description}</span>
-                            <span className="hi-meta">
-                                {project.year && <span className="hi-year">{project.year}</span>}
-                                <span className="hi-arr">↗</span>
-                            </span>
-                        </Link>
+            {/* FOCUS */}
+            <section className="focus" aria-label="What I do">
+                <div className="focus-grid">
+                    {FOCUS.map((item, i) => (
+                        <Reveal className="focus-card" key={item.k} delay={i * 90}>
+                            <span className="focus-k">{item.k}</span>
+                            <h3 className="focus-title">{item.title}</h3>
+                            <p className="focus-body">{item.body}</p>
+                        </Reveal>
                     ))}
                 </div>
             </section>
+
+            {/* SELECTED WORK */}
+            <section className="work" id="work">
+                <Reveal className="work-head" as="header">
+                    <h2 className="work-title">Selected work</h2>
+                    <Link to="/projects" className="work-all">All projects ↗</Link>
+                </Reveal>
+
+                {error && <p role="alert">Couldn't load projects: {error}</p>}
+
+                <ol className="index">
+                    {selected.map((project, i) => (
+                        <Reveal as="li" className="index-item" key={project.title} delay={i * 70}>
+                            <Link
+                                to={`/projects/${projectSlug(project.title)}`}
+                                className="index-row"
+                            >
+                                <span className="index-num">{String(i + 1).padStart(2, '0')}</span>
+                                <span className="index-name">{project.title}</span>
+                                <span className="index-tag">{project.tagline || project.description}</span>
+                                <span className="index-meta">
+                                    {project.year && <span className="index-year">{project.year}</span>}
+                                    <span className="index-arr" aria-hidden="true">↗</span>
+                                </span>
+                                <span className="index-thumb" aria-hidden="true">
+                                    <img src={project.image} alt="" loading="lazy" />
+                                </span>
+                            </Link>
+                        </Reveal>
+                    ))}
+                </ol>
+            </section>
+
+            {/* CONTACT */}
+            <Reveal className="contact" as="section">
+                <h2 className="contact-title">Let's build something.</h2>
+                <p className="contact-sub">
+                    I'm looking for a full-time role from July 2026. The fastest way to reach me is email.
+                </p>
+                <div className="contact-links">
+                    <a href="mailto:jeremy030307@gmail.com" className="btn btn-primary">Email me</a>
+                    <a href="https://github.com/Jeremy030307-main" target="_blank" rel="noopener noreferrer" className="btn">GitHub ↗</a>
+                    <a href="https://linkedin.com/in/teng-kong-cheng-439bba312" target="_blank" rel="noopener noreferrer" className="btn">LinkedIn ↗</a>
+                </div>
+            </Reveal>
 
         </div>
     );
