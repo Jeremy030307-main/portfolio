@@ -11,6 +11,9 @@ const Project = () => {
 
             <div className='project-header'>
                 <h1>Projects.</h1>
+                <p className="project-lead">
+                    A selection of things I've designed, built, and shipped — from native iOS apps to game AI.
+                </p>
             </div>
 
             <div>

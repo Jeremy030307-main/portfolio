@@ -6,6 +6,8 @@
       { "name": "Python", "icon": "fa-brands fa-python" },
       { "name": "Java", "icon": "fa-brands fa-java" },
       { "name": "Swift", "icon": "fa-brands fa-swift" },
+      { "name": "C++", "icon": "fa-solid fa-code" },
+      { "name": "C", "icon": "fa-solid fa-c" },
       { "name": "HTML5", "icon": "fa-brands fa-html5" },
       { "name": "CSS3", "icon": "fa-brands fa-css3-alt" },
       { "name": "SQL", "icon": "fa-solid fa-database" }
@@ -15,6 +17,7 @@
     "category": "Frameworks & Libraries",
     "skills": [
       { "name": "React", "icon": "fa-brands fa-react" },
+      { "name": "React Native", "icon": "fa-brands fa-react" },
       { "name": "Node.js", "icon": "fa-brands fa-node-js" },
       { "name": "Express", "icon": "fa-solid fa-server" },
       { "name": "Flask", "icon": "fa-solid fa-flask" },
@@ -30,7 +33,9 @@
       { "name": "Firebase", "icon": "fa-solid fa-fire" },
       { "name": "SQLite", "icon": "fa-solid fa-database" },
       { "name": "Xcode", "icon": "fa-brands fa-app-store-ios" },
-      { "name": "Figma", "icon": "fa-brands fa-figma" }
+      { "name": "Figma", "icon": "fa-brands fa-figma" },
+      { "name": "Docker", "icon": "fa-brands fa-docker" },
+      { "name": "Hetzner Cloud", "icon": "fa-solid fa-cloud" }
     ]
   }
 ]

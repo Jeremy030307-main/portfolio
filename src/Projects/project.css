@@ -3,24 +3,52 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    padding: max(120px, 6%) clamp(1.5rem, 8vw, 180px) 0;
+    padding: max(120px, 6%) clamp(3rem, 10vw, 300px) 0;
     box-sizing: border-box;
 }
 
-.project-header{
+.project-header {
     display: flex;
-    justify-content: flex-start;
-    gap: 25%;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 22px;
+}
+
+.project-header h1 {
+    margin: 0;
+}
+
+.project-lead {
+    margin: 0;
+    max-width: 50ch;
+    font-size: clamp(17px, 1.9vw, 20px);
+    line-height: 1.5;
+    color: var(--text-secondary);
+    letter-spacing: -0.01em;
+    text-align: left;
 }
 
 .project-divider {
-  border: none;
-  border-bottom: 1px solid var(--border);
-  margin: 3rem 0;
+    border: none;
+    border-bottom: 1px solid var(--line-soft);
+    margin: 0;
 }
 
+/* even vertical rhythm between rows, matching the design's 60px row padding */
+.projects-window .project-container {
+    padding: 60px 0;
+}
 
+.projects-window .project-container:first-of-type {
+    padding-top: 30px;
+}
 
-
-
+@media (max-width: 900px) {
+    .projects-window .project-container {
+        padding: 40px 0;
+    }
+    .projects-window .project-container:first-of-type {
+        padding-top: 26px;
+    }
+}

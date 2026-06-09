@@ -8,6 +8,9 @@
   --surface: #f6f6f6;
   --surface-hover: #ebebeb;
   --accent: rgb(61, 136, 221);
+  --green: #2f9e6e;
+  --faint: #9a988f;
+  --line-soft: #e0ddd5;
   --nav-bg: rgba(238, 238, 238, 0.97);
   --shadow: 0 0.5px 1px #aeadad;
   --pulse-color: 24, 23, 23;
@@ -23,6 +26,9 @@
   --surface: #1f1f1f;
   --surface-hover: #262626;
   --accent: #6aa9ff;
+  --green: #43c187;
+  --faint: #6f6d65;
+  --line-soft: #2a2823;
   --nav-bg: rgba(22, 22, 22, 0.92);
   --shadow: 0 0.5px 1px #000;
   --pulse-color: 237, 237, 237;

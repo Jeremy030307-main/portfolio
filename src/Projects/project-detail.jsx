@@ -97,7 +97,7 @@ const ProjectDetail = () => {
 
       <div>
         <h2>Overview</h2>
-        <p>{projectData.overview}</p>
+        <p style={{ whiteSpace: "pre-line" }}>{projectData.overview}</p>
       </div>
 
       <hr className="project-content-divider" />

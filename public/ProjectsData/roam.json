@@ -2,7 +2,7 @@
   "id": "1",
   "title": "Roam",
   "summary": "A native iOS travel planning app built with Swift and Firebase, featuring Firebase Authentication, Core Data for offline data persistence, and real-time itinerary collaboration. Roam allows users to create, edit, and share personalized trip plans with smart scheduling, expense tracking, and a clean, UIKit-driven user interface.",
-  "overview": "Many people love to travel, but find the planning and research process stressful and time-consuming. Roam was built to simplify this experience by combining booking details and itinerary planning into one easy-to-use platform. Roam allows users to create, edit, and share personalized itineraries, making travel prep smart, flexible, and collaborative.",
+  "overview": "Planning a trip often involves juggling multiple apps for itineraries, budgets, saved locations, and travel notes. Roam was built to simplify that experience by bringing everything into a single native iOS application. \n\nRoam helps travelers organize trips, create day-by-day itineraries, track expenses, discover nearby attractions, and keep important travel information accessible even when offline. The goal was to create a streamlined travel planning experience that reduces the friction between researching, planning, and managing a trip.\n\nBeyond building a functional travel application, this project also served as an opportunity to deepen my understanding of iOS development, Firebase services, local data persistence, and API integration.",
   "technologies": "Swift, Firebase, UIKit, CoreData, Yelp API",
   "thumbnail": "https://i.imgur.com/6A8kkv3.png",
   "githubLink": "https://github.com/Jeremy030307-main/Roam",

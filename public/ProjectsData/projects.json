@@ -2,36 +2,48 @@
   {
     "image": "https://i.imgur.com/6A8kkv3.png",
     "title": "Roam",
+    "tagline": "Native iOS trip planner",
+    "year": "2025",
     "description": "An intuitive travel planning app that lets users create, edit, and share personalized itineraries. From organizing destinations and timing in a calendar-like view to tracking trip expenses and discovering plans from other travelers, ROAM makes travel prep smart, flexible, and collaborative.",
     "skillset": "Swift, Firebase, UIKit, CoreData"
   },
   {
     "image": "https://i.imgur.com/8z6TOvW.png",
     "title": "Brewey",
+    "tagline": "Coffee tracker · React Native + FastAPI",
+    "year": "2025",
     "description": "A coffee tracking mobile app and FastAPI backend that lets specialty coffee drinkers catalogue their bean inventory, log brew recipes (V60, AeroPress, Espresso, etc.), and watch personal stats — day streak, average rating, coffees owned — grow over time. Designed end-to-end in Figma and built as a cross-platform React Native app backed by Supabase.",
     "skillset": "React Native, Expo, TypeScript, FastAPI, Python, Supabase (Postgres + Auth + RLS), React Navigation, React Query, Figma"
   },
   {
     "image": "https://i.imgur.com/oFIh4X6.png",
     "title": "EcoStyle",
+    "tagline": "Sustainable fashion store · React + Express",
+    "year": "2024",
     "description": "A modern clothing brand built on sustainability. EcoStyle uses responsibly sourced materials and introduces a smart EcoPoint system that helps users track the carbon footprint of their purchases — from shipping to production — encouraging conscious fashion choices that make a real impact.",
     "skillset": "JavaScript, HTML, CSS, React.js, Express.js"
   },
   {
     "image": "https://i.imgur.com/MRyUQx9.png",
     "title": "Santorini",
+    "tagline": "Strategy board game · Java & Swing",
+    "year": "2024",
     "description": "A creative reimagining of the classic Santorini board game, featuring fresh mechanics and unique rule twists that deepen strategy and replayability. This version brings new challenges to experienced players while keeping the game's core charm and elegance intact.",
     "skillset": "Java, Java Swing"
   },
   {
     "image": "https://i.imgur.com/POypzf6.png",
     "title": "Scrumatics",
+    "tagline": "Scrum project manager · Flask + SQLite",
+    "year": "2023",
     "description": "A lightweight Scrum project management tool built with Flask, SQLite, and Python. The app enables users to manage tasks across sprints, assign stories to team members, and visualize contributions through interactive charts.",
     "skillset": "Python, Flask, SQLite, Chart.js, HTML/CSS"
   },
   {
     "image": "https://i.imgur.com/gtjUazx.png",
     "title": "Pacman Artificial Intelligence",
+    "tagline": "UC Berkeley CS188 AI agents · Python",
+    "year": "2023",
     "description": "An implementation of the UC Berkeley CS188 Pacman AI project, exploring various AI techniques to control Pacman in different game scenarios. The project includes agents that utilize search algorithms, adversarial strategies, probabilistic reasoning, and decision-making under uncertainty.",
     "skillset": "Python, Search Algorithms (DFS, BFS, A*, UCS), Minimax, Alpha-Beta Pruning, MDPs, Bayesian Networks, Neural Networks"
   }

@@ -9,7 +9,7 @@ const ProjectContainer = ({ index, projectName, projectDescription, projectTechS
         <div className="project-container">
 
             <h2 className="project-title">
-                {String(index + 1).padStart(2, '0')}/ {projectName}
+                <span className="project-num">{String(index + 1).padStart(2, '0')}/</span> {projectName}
             </h2>
 
             <div className="project-image-container">
@@ -17,10 +17,12 @@ const ProjectContainer = ({ index, projectName, projectDescription, projectTechS
             </div>
 
             <div className="project-body">
-                <p>{projectDescription}</p>
-                <p>{techStack}</p>
+                <p className="project-desc">{projectDescription}</p>
+                <p className="project-stack">{techStack}</p>
                 <div className="project-more">
-                    <Link to={`/projects/${projectSlug(projectName)}`}>More on this project &#8599;</Link>
+                    <Link to={`/projects/${projectSlug(projectName)}`}>
+                        More on this project <span className="project-arr">&#8599;</span>
+                    </Link>
                 </div>
             </div>
 
