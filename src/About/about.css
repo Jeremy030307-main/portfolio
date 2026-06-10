@@ -145,6 +145,19 @@
     margin: 18px 0 0;
 }
 
+/* Clip window for the masked reveal: .line-inner slides up into view.
+   Negative margin offsets the padding that keeps descenders from being shaved. */
+.about-title .line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+}
+
+.about-title .line-inner {
+    display: block;
+}
+
 .about-body {
     font-size: 16.5px;
     color: var(--text-secondary);

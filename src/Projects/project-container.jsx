@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import './project-container.css';
 import { projectSlug } from '../utils/slug';
 
-const ProjectContainer = ({ index, flip = false, projectName, projectDescription, projectTechStack, projectImage }) => {
+const ProjectContainer = ({ index, flip = false, projectSlug: slug, projectName, projectDescription, projectTechStack, projectImage }) => {
     const techStack = Array.isArray(projectTechStack) ? projectTechStack.join(', ') : projectTechStack;
+    const href = slug || projectSlug(projectName);
 
     return (
         <div className={`project-container${flip ? ' flip' : ''}`}>
@@ -20,7 +21,7 @@ const ProjectContainer = ({ index, flip = false, projectName, projectDescription
                 <p className="project-desc">{projectDescription}</p>
                 <p className="project-stack">{techStack}</p>
                 <div className="project-more">
-                    <Link to={`/projects/${projectSlug(projectName)}`}>
+                    <Link to={`/projects/${href}`}>
                         More on this project <span className="project-arr">&#8599;</span>
                     </Link>
                 </div>

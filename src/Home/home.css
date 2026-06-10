@@ -83,6 +83,18 @@
     margin: 0;
 }
 
+/* Each line is a clip window; .line-inner is the part GSAP slides up into view.
+   Padding-bottom keeps descenders (g, y, p) from being shaved by overflow. */
+.hero-title .line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.08em;
+}
+
+.hero-title .line-inner {
+    display: block;
+}
+
 .hero-foot {
     display: grid;
     grid-template-columns: minmax(0, 1.5fr) auto;

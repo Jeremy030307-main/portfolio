@@ -1,45 +1,113 @@
 {
-  "id": "1",
+  "slug": "roam",
+  "order": 1,
   "title": "Roam",
-  "summary": "A native iOS travel planning app built with Swift and Firebase, featuring Firebase Authentication, Core Data for offline data persistence, and real-time itinerary collaboration. Roam allows users to create, edit, and share personalized trip plans with smart scheduling, expense tracking, and a clean, UIKit-driven user interface.",
+  "tagline": "Native iOS trip planner",
+  "year": "2025",
+  "image": "https://i.imgur.com/6A8kkv3.png",
+  "skillset": "Swift, Firebase, UIKit, CoreData",
+  "description": "An intuitive travel planning app that lets users create, edit, and share personalized itineraries. From organizing destinations and timing in a calendar-like view to tracking trip expenses and discovering plans from other travelers, ROAM makes travel prep smart, flexible, and collaborative.",
+  "id": "1",
   "overview": "Planning a trip often involves juggling multiple apps for itineraries, budgets, saved locations, and travel notes. Roam was built to simplify that experience by bringing everything into a single native iOS application. \n\nRoam helps travelers organize trips, create day-by-day itineraries, track expenses, discover nearby attractions, and keep important travel information accessible even when offline. The goal was to create a streamlined travel planning experience that reduces the friction between researching, planning, and managing a trip.\n\nBeyond building a functional travel application, this project also served as an opportunity to deepen my understanding of iOS development, Firebase services, local data persistence, and API integration.",
   "technologies": "Swift, Firebase, UIKit, CoreData, Yelp API",
   "thumbnail": "https://i.imgur.com/6A8kkv3.png",
   "githubLink": "https://github.com/Jeremy030307-main/Roam",
-  
+  "demo": {
+    "heading": "A 60-second walkthrough",
+    "body": "Watch a trip come together end to end — build the day-by-day itinerary, log expenses on the fly, and pin places from Yelp, all running offline.",
+    "points": [
+      "Drag items across days",
+      "Running expense totals by category",
+      "Fully usable with no signal"
+    ],
+    "video": "",
+    "poster": ""
+  },
+  "problem": "Planning a trip means juggling notes, maps, a spreadsheet and a stack of booking apps — and none of it works the moment you lose signal on the road.",
+  "solution": "One native app that holds the itinerary, expenses, saved places and a travel journal — synced to the cloud and cached for offline use.",
+  "process": [
+    {
+      "title": "Map the journey",
+      "description": "Whiteboarded the plan → travel → reflect flow before writing code."
+    },
+    {
+      "title": "Model in Firestore",
+      "description": "Chose a trip → days → items shape so itineraries sync cleanly."
+    },
+    {
+      "title": "Offline with Core Data",
+      "description": "Cached locally and reconciled on reconnect for no-signal use."
+    },
+    {
+      "title": "Polish the UIKit UI",
+      "description": "Tuned navigation and gestures for a native, effortless feel."
+    }
+  ],
+  "screens": [
+    { "image": "", "caption": "Day-by-day itinerary" },
+    { "image": "", "caption": "Expense tracking" },
+    { "image": "", "caption": "Saved places & discovery" }
+  ],
+
+  "architecture": {
+    "summary": "A native UIKit client backed by a CoreData cache for offline use, syncing to Firebase for auth and real-time data, with Yelp powering place discovery.",
+    "flow": [
+      {
+        "label": "UIKit Client",
+        "sub": "iOS app · Swift",
+        "role": "client"
+      },
+      {
+        "label": "CoreData",
+        "sub": "Offline cache",
+        "role": "cache"
+      },
+      {
+        "label": "Firebase",
+        "sub": "Auth + Firestore",
+        "role": "cloud"
+      }
+    ],
+    "external": [
+      {
+        "label": "Yelp API",
+        "sub": "Place discovery"
+      }
+    ]
+  },
   "keyFeatures": [
-  {
-    "title": "Trip Creation & Management",
-    "description": "Users can create and manage trips that include an itinerary, expense tracking, checklists, and saved places — all in one place."
-  },
-  {
-    "title": "Itinerary Planner",
-    "description": "Add and organize destinations, activities, and schedules to build a personalized travel itinerary for each trip."
-  },
-  {
-    "title": "Expense Tracking",
-    "description": "Track trip expenses in real-time, helping users stay within budget while traveling."
-  },
-  {
-    "title": "Checklist Management",
-    "description": "Create and manage packing lists and to-do items, ensuring nothing is forgotten before departure."
-  },
-  {
-    "title": "Saved Places",
-    "description": "Users can bookmark interesting locations they want to visit later, keeping everything organized within the trip."
-  },
-  {
-    "title": "Itinerary Copy & Paste",
-    "description": "Easily copy and paste itineraries from one trip to another, allowing users to reuse plans for similar trips or share with friends."
-  },
-  {
-    "title": "Travel Journal Posts",
-    "description": "Users can create posts about tourist spots, including images and personal captions to share experiences, reviews, and travel tips with others."
-  },
-  {
-    "title": "Location-Based Spot Discovery",
-    "description": "Users can search for a location and view a list of recommended tourist spots within that area, powered by integrated APIs like Yelp."
-  }
+    {
+      "title": "Trip Creation & Management",
+      "description": "Users can create and manage trips that include an itinerary, expense tracking, checklists, and saved places — all in one place."
+    },
+    {
+      "title": "Itinerary Planner",
+      "description": "Add and organize destinations, activities, and schedules to build a personalized travel itinerary for each trip."
+    },
+    {
+      "title": "Expense Tracking",
+      "description": "Track trip expenses in real-time, helping users stay within budget while traveling."
+    },
+    {
+      "title": "Checklist Management",
+      "description": "Create and manage packing lists and to-do items, ensuring nothing is forgotten before departure."
+    },
+    {
+      "title": "Saved Places",
+      "description": "Users can bookmark interesting locations they want to visit later, keeping everything organized within the trip."
+    },
+    {
+      "title": "Itinerary Copy & Paste",
+      "description": "Easily copy and paste itineraries from one trip to another, allowing users to reuse plans for similar trips or share with friends."
+    },
+    {
+      "title": "Travel Journal Posts",
+      "description": "Users can create posts about tourist spots, including images and personal captions to share experiences, reviews, and travel tips with others."
+    },
+    {
+      "title": "Location-Based Spot Discovery",
+      "description": "Users can search for a location and view a list of recommended tourist spots within that area, powered by integrated APIs like Yelp."
+    }
   ],
   "challenges": [
     {
@@ -72,30 +140,29 @@
     }
   ],
   "techStacks": [
-  {
-    "name": "Swift",
-    "description": "The primary programming language used for building the iOS app, ensuring a smooth and responsive user experience."
-  },
-  {
-    "name": "Firebase Firestore",
-    "description": "Used as a cloud-hosted NoSQL database to store and sync user data in real-time across devices."
-  },
-  {
-    "name": "Firebase Authentication",
-    "description": "Manages user sign-in and authentication securely, supporting email/password and anonymous login."
-  },
-  {
-    "name": "UIKit",
-    "description": "Framework for building the app's user interface, providing a native look and feel consistent with iOS design guidelines."
-  },
-  {
-    "name": "Core Data",
-    "description": "Handles local data storage, allowing users to access and modify their itineraries offline."
-  },
-  {
-    "name": "Yelp API",
-    "description": "Provides location-based data about restaurants, attractions, and tourist spots to enhance travel discovery features."
-  }
-]
-
+    {
+      "name": "Swift",
+      "description": "The primary programming language used for building the iOS app, ensuring a smooth and responsive user experience."
+    },
+    {
+      "name": "Firebase Firestore",
+      "description": "Used as a cloud-hosted NoSQL database to store and sync user data in real-time across devices."
+    },
+    {
+      "name": "Firebase Authentication",
+      "description": "Manages user sign-in and authentication securely, supporting email/password and anonymous login."
+    },
+    {
+      "name": "UIKit",
+      "description": "Framework for building the app's user interface, providing a native look and feel consistent with iOS design guidelines."
+    },
+    {
+      "name": "Core Data",
+      "description": "Handles local data storage, allowing users to access and modify their itineraries offline."
+    },
+    {
+      "name": "Yelp API",
+      "description": "Provides location-based data about restaurants, attractions, and tourist spots to enhance travel discovery features."
+    }
+  ]
 }

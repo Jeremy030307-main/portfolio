@@ -1,9 +1,11 @@
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './home.css';
 import useProjects from '../hooks/useProjects';
-import { projectSlug } from '../utils/slug';
+import { slugOf } from '../utils/slug';
 import Reveal from '../Components/Reveal';
 import me_transparent from '../Components/Assets/me_transparent.png';
+import { gsap, ScrollTrigger, useGSAP, EASE, prefersReducedMotion } from '../utils/gsap-setup';
 
 const FOCUS = [
     {
@@ -26,9 +28,56 @@ const FOCUS = [
 const Home = () => {
     const { projects, error } = useProjects();
     const selected = projects.slice(0, 4);
+    const root = useRef(null);
+
+    // Hero entrance: the first three seconds a recruiter spends on the page.
+    // A masked, line-by-line title reveal reads as deliberate and high-craft;
+    // the supporting elements cascade in behind it, then the portrait gets a
+    // gentle scroll-linked parallax so the hero feels alive, not static.
+    useGSAP(() => {
+        if (prefersReducedMotion()) return;
+
+        const lines = gsap.utils.toArray('.hero-title .line-inner');
+        const tl = gsap.timeline({ defaults: { ease: EASE } });
+
+        tl.from('.hero-eyebrow', { autoAlpha: 0, y: 14, duration: 0.7 })
+            .from(lines, { yPercent: 115, duration: 1.05, stagger: 0.12 }, '-=0.35')
+            .from('.hero-id', { autoAlpha: 0, y: 24, duration: 0.8 }, '-=0.55')
+            .from('.hero-cta .btn', { autoAlpha: 0, y: 18, duration: 0.6, stagger: 0.1 }, '-=0.5');
+
+        gsap.to('.hero-portrait', {
+            yPercent: -16,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true,
+            },
+        });
+
+        // Selected-work rows slide up + fade as they enter. batch() coordinates
+        // rows that enter together into a single, smooth stagger instead of
+        // firing each one independently.
+        const rows = gsap.utils.toArray('.index-item');
+        gsap.set(rows, { autoAlpha: 0, y: 40 });
+
+        ScrollTrigger.batch(rows, {
+            start: 'top 88%',
+            onEnter: (batch) =>
+                gsap.to(batch, {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: EASE,
+                    stagger: 0.12,
+                    overwrite: true,
+                }),
+        });
+    }, { scope: root });
 
     return (
-        <div className="home">
+        <div className="home" ref={root}>
 
             {/* HERO */}
             <section className="hero">
@@ -38,9 +87,16 @@ const Home = () => {
                 </p>
 
                 <h1 className="hero-title">
-                    I build <span className="ink">useful,</span>
-                    <br />
-                    well-made <span className="ink">software.</span>
+                    <span className="line">
+                        <span className="line-inner">
+                            I build <span className="ink">useful,</span>
+                        </span>
+                    </span>
+                    <span className="line">
+                        <span className="line-inner">
+                            well-made <span className="ink">software.</span>
+                        </span>
+                    </span>
                 </h1>
 
                 <div className="hero-foot">
@@ -83,9 +139,9 @@ const Home = () => {
 
                 <ol className="index">
                     {selected.map((project, i) => (
-                        <Reveal as="li" className="index-item" key={project.title} delay={i * 70}>
+                        <li className="index-item" key={project.title}>
                             <Link
-                                to={`/projects/${projectSlug(project.title)}`}
+                                to={`/projects/${slugOf(project)}`}
                                 className="index-row"
                             >
                                 <span className="index-num">{String(i + 1).padStart(2, '0')}</span>
@@ -99,7 +155,7 @@ const Home = () => {
                                     <img src={project.image} alt="" loading="lazy" />
                                 </span>
                             </Link>
-                        </Reveal>
+                        </li>
                     ))}
                 </ol>
             </section>

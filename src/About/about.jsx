@@ -1,12 +1,76 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './about.css';
 import Reveal from '../Components/Reveal';
 import me_transparent from '../Components/Assets/me_transparent.png';
+import { gsap, ScrollTrigger, useGSAP, EASE, prefersReducedMotion } from '../utils/gsap-setup';
 
 const About = () => {
     const [timeline, setTimeline] = useState([]);
     const [skills, setSkills] = useState([]);
     const [error, setError] = useState(null);
+    const root = useRef(null);
+
+    // Intro reveal: masked title (same move as the hero) + eyebrow. This is
+    // data-independent, so it runs once on mount with no dependencies — keeping
+    // it out of the data-driven hook below avoids it replaying when fetches land.
+    useGSAP(() => {
+        if (prefersReducedMotion()) return;
+        gsap.timeline({ defaults: { ease: EASE } })
+            .from('.about-intro .eyebrow', { autoAlpha: 0, y: 12, duration: 0.6 })
+            .from('.about-title .line-inner', { yPercent: 115, duration: 1.05 }, '-=0.35');
+    }, { scope: root });
+
+    // Scroll reveals that depend on fetched content (skills, timeline). Re-runs
+    // when data lands; revertOnUpdate fully cleans up the previous run first so
+    // nothing is left stranded at its hidden start state. immediateRender:false
+    // keeps scroll-triggered "from" tweens from hiding content before they fire.
+    useGSAP(() => {
+        if (prefersReducedMotion()) return;
+
+        gsap.from('.profile', {
+            autoAlpha: 0,
+            x: -40,
+            duration: 1,
+            ease: EASE,
+            immediateRender: false,
+            scrollTrigger: { trigger: '.about-grid', start: 'top 80%' },
+        });
+
+        // Skill chips: a lively batched pop-in as the skills section enters.
+        const chips = gsap.utils.toArray('.skills .chip');
+        if (chips.length) {
+            gsap.set(chips, { autoAlpha: 0, y: 16, scale: 0.9 });
+            ScrollTrigger.batch(chips, {
+                start: 'top 90%',
+                onEnter: (batch) =>
+                    gsap.to(batch, {
+                        autoAlpha: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.55,
+                        ease: 'back.out(1.7)',
+                        stagger: 0.04,
+                        overwrite: true,
+                    }),
+            });
+        }
+
+        // Journey: each entry reveals in sequence, its node scaling in like a
+        // pin dropping onto the line — the timeline reads as a story unfolding.
+        gsap.utils.toArray('.tl-item').forEach((item) => {
+            gsap.timeline({
+                defaults: { ease: EASE, immediateRender: false },
+                scrollTrigger: { trigger: item, start: 'top 88%' },
+            })
+                .from(item, { autoAlpha: 0, x: -24, duration: 0.7 })
+                .from(item.querySelector('.node'), {
+                    scale: 0,
+                    transformOrigin: 'center',
+                    duration: 0.5,
+                    ease: 'back.out(2)',
+                }, '-=0.45');
+        });
+    }, { scope: root, dependencies: [timeline, skills], revertOnUpdate: true });
 
     useEffect(() => {
         Promise.all([
@@ -27,14 +91,18 @@ const About = () => {
     }, []);
 
     return (
-        <div className="about-page">
+        <div className="about-page" ref={root}>
 
             {/* OPENING STATEMENT */}
             <header className="about-intro">
                 <p className="eyebrow">About</p>
                 <h1 className="about-title">
-                    I'm a Software Engineering student who likes turning ideas into
-                    things people <span className="ink">actually use.</span>
+                    <span className="line">
+                        <span className="line-inner">
+                            I'm a Software Engineering student who likes turning ideas into
+                            things people <span className="ink">actually use.</span>
+                        </span>
+                    </span>
                 </h1>
             </header>
 

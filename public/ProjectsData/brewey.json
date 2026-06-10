@@ -1,13 +1,25 @@
 {
-  "id": "6",
+  "slug": "brewey",
+  "order": 2,
   "title": "Brewey",
-  "summary": "A cross-platform coffee experience tracker. Specialty coffee drinkers catalogue their beans, log brews with full recipe detail, and surface insights like day streak, average rating, and remaining grams per bag — all in a Figma-designed React Native app backed by a FastAPI + Supabase stack.",
+  "tagline": "Coffee tracker · React Native + FastAPI",
+  "year": "2025",
+  "image": "https://i.imgur.com/8z6TOvW.png",
+  "skillset": "React Native, Expo, TypeScript, FastAPI, Python, Supabase (Postgres + Auth + RLS), React Navigation, React Query, Figma",
+  "description": "A coffee tracking mobile app and FastAPI backend that lets specialty coffee drinkers catalogue their bean inventory, log brew recipes (V60, AeroPress, Espresso, etc.), and watch personal stats — day streak, average rating, coffees owned — grow over time. Designed end-to-end in Figma and built as a cross-platform React Native app backed by Supabase.",
+  "id": "6",
   "overview": "Brewey turns the daily ritual of brewing coffee into a personal data product. Users sign up, walk through a short onboarding flow that captures their coffee journey, growth goal, and experience level, then land in a five-tab app: Home (greeting + quick stats + recent activity), Brew (log a new recipe with method, dose, yield, time, rating), Coffee (inventory with weight progress bars and filters by Blend or Single Origin), Insight (a personalised brews-over-time chart), and Profile. The mobile client is a TypeScript React Native app built with Expo and React Navigation, talking to a FastAPI service that acts as a thin proxy in front of Supabase — forwarding the user's JWT so RLS policies in Postgres enforce per-user data isolation. Logging a brew automatically decrements the parent coffee's remaining grams, so the inventory stays accurate without manual upkeep.",
   "technologies": "React Native, Expo, TypeScript, FastAPI, Python, Supabase (Postgres + Auth + RLS), React Navigation, React Query, Axios, Figma",
   "thumbnail": "https://i.imgur.com/8z6TOvW.png",
   "githubLinks": [
-    { "label": "Mobile", "url": "https://github.com/Jeremy030307-main/brewey_mobile" },
-    { "label": "Backend", "url": "https://github.com/Jeremy030307-main/brewey_backend" }
+    {
+      "label": "Mobile",
+      "url": "https://github.com/Jeremy030307-main/brewey_mobile"
+    },
+    {
+      "label": "Backend",
+      "url": "https://github.com/Jeremy030307-main/brewey_backend"
+    }
   ],
   "liveDemoLink": "",
   "keyFeatures": [
