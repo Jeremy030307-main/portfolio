@@ -2,102 +2,165 @@
   "slug": "brewey",
   "order": 2,
   "title": "Brewey",
-  "tagline": "Coffee tracker · React Native + FastAPI",
+  "tagline": "Coffee brewing tracker for home baristas",
   "year": "2025",
   "image": "https://i.imgur.com/8z6TOvW.png",
-  "skillset": "React Native, Expo, TypeScript, FastAPI, Python, Supabase (Postgres + Auth + RLS), React Navigation, React Query, Figma",
-  "description": "A coffee tracking mobile app and FastAPI backend that lets specialty coffee drinkers catalogue their bean inventory, log brew recipes (V60, AeroPress, Espresso, etc.), and watch personal stats — day streak, average rating, coffees owned — grow over time. Designed end-to-end in Figma and built as a cross-platform React Native app backed by Supabase.",
-  "id": "6",
-  "overview": "Brewey turns the daily ritual of brewing coffee into a personal data product. Users sign up, walk through a short onboarding flow that captures their coffee journey, growth goal, and experience level, then land in a five-tab app: Home (greeting + quick stats + recent activity), Brew (log a new recipe with method, dose, yield, time, rating), Coffee (inventory with weight progress bars and filters by Blend or Single Origin), Insight (a personalised brews-over-time chart), and Profile. The mobile client is a TypeScript React Native app built with Expo and React Navigation, talking to a FastAPI service that acts as a thin proxy in front of Supabase — forwarding the user's JWT so RLS policies in Postgres enforce per-user data isolation. Logging a brew automatically decrements the parent coffee's remaining grams, so the inventory stays accurate without manual upkeep.",
-  "technologies": "React Native, Expo, TypeScript, FastAPI, Python, Supabase (Postgres + Auth + RLS), React Navigation, React Query, Axios, Figma",
+  "skillset": "React Native, Expo, TypeScript, Supabase",
+  "description": "A native mobile app that turns coffee brewing into a craft you can measure. Log every pour-over with multi-phase recipes, manage your bean cellar bag by bag, and watch personalized insights reveal your favorite methods, peak brew days, and how your ratings trend over time.",
+  "id": "2",
+  "overview": "Dial in every cup — log your brews, track your beans, and learn what makes your best coffee.",
+  "technologies": "React Native, Expo, TypeScript, Supabase, PostgreSQL, React Query",
   "thumbnail": "https://i.imgur.com/8z6TOvW.png",
-  "githubLinks": [
+  "githubLink": "https://github.com/Jeremy030307-main/brewey_mobile",
+  "demo": {
+    "heading": "A 60-second walkthrough",
+    "body": "Watch a brew come together end to end — pick a bean from your cellar, build a phased pour-over recipe, rate the result, then jump to Insights to see your methods and rating trend take shape.",
+    "points": [
+      "Phase-by-phase pour-over logging",
+      "Bean cellar with per-bag remaining weight",
+      "Insights: favorite method, peak day, rating trend"
+    ],
+    "video": "/Demo/brewey.mp4",
+    "poster": ""
+  },
+  "problem": "Serious home brewing lives in scattered notes — grind setting in one app, water temp in your head, bean roast dates on the bag, and no way to tell which variables actually made yesterday's cup great.",
+  "solution": "One native app that captures the full recipe for every brew, tracks each bean down to the gram, and turns that history into insights — so you can repeat your best cups instead of guessing.",
+  "process": [
     {
-      "label": "Mobile",
-      "url": "https://github.com/Jeremy030307-main/brewey_mobile"
+      "title": "Define the brew model",
+      "description": "Mapped how a brew, its phases, the bean and the bag relate before writing any UI."
     },
     {
-      "label": "Backend",
-      "url": "https://github.com/Jeremy030307-main/brewey_backend"
+      "title": "Schema-first in Postgres",
+      "description": "Built the data layer as Supabase migrations with row-level security from day one."
+    },
+    {
+      "title": "Retire the backend",
+      "description": "Replaced a standalone FastAPI server with direct Supabase access, moving stats into SQL views and RPCs."
+    },
+    {
+      "title": "Craft the editorial UI",
+      "description": "Designed a serif-and-sage native interface with React Query handling all server state."
     }
   ],
-  "liveDemoLink": "",
+  "screens": [
+    { "image": "/images/brewey-home.png", "caption": "Home" },
+    { "image": "/images/brewey-brew-details.png", "caption": "Log Brew — phased pour-over recipe" },
+    { "image": "/images/brewey-coffee-details.png", "caption": "Coffee detail — bags and brew history" },
+    { "image": "/images/brewey-insights.png", "caption": "Insights — methods, peak day, rating trend" },
+    { "image": "/images/brewey-mycoffee.png", "caption": "Bean cellar — your coffees at a glance" }
+  ],
+
+  "architecture": {
+    "summary": "A native React Native (Expo) client talking directly to Supabase for auth and Postgres data, with React Query managing caching and server state. Bag aggregates and user stats are computed in-database via SQL views and RPCs, all guarded by row-level security.",
+    "flow": [
+      {
+        "label": "Expo Client",
+        "sub": "React Native · TypeScript",
+        "role": "client"
+      },
+      {
+        "label": "React Query",
+        "sub": "Cache + server state",
+        "role": "cache"
+      },
+      {
+        "label": "Supabase",
+        "sub": "Auth + Postgres",
+        "role": "cloud"
+      }
+    ],
+    "external": [
+      {
+        "label": "Postgres RPC + Views",
+        "sub": "Stats & aggregates"
+      }
+    ]
+  },
   "keyFeatures": [
     {
-      "title": "Coffee Inventory with Weight Tracking",
-      "description": "Catalogue every bag with roaster, origin, variety, process, and roast level. Each card shows a live progress bar of grams remaining, decremented automatically every time a brew is logged."
+      "title": "Phased Brew Logging",
+      "description": "Log each brew as a full recipe — dose, yield, grinder setting, water temp and a timeline of pour phases (bloom, pours, drawdown) with per-phase water and timing."
     },
     {
-      "title": "Brew Logging with Full Recipe Detail",
-      "description": "Capture method (V60, AeroPress, Espresso, French Press, Chemex, Moka), dose, yield, grind, time, rating, and notes — then revisit history per coffee to dial in your recipe."
+      "title": "Bean Cellar & Bags",
+      "description": "Track every coffee down to the bag, with roast date, purchase price and a live remaining-weight gauge so you always know what's fresh and how much is left."
     },
     {
-      "title": "Personal Stats & Streaks",
-      "description": "Day streak, average rating, and active coffee count are computed server-side from brew history, surfaced on Home and Profile, and updated reactively after every action."
+      "title": "Specialty Coffee Detail",
+      "description": "Capture origin, region, elevation, farm, producer, process, variety, cupping score and flavour notes — including multi-component records for blends."
     },
     {
-      "title": "Onboarding Flow That Shapes the App",
-      "description": "Three-step onboarding captures the user's journey, growth goal, and experience level, persisted on the profile so future features can tailor tips and recommendations."
+      "title": "Brew Ratings & History",
+      "description": "Rate each cup and browse a full brew history per coffee, so you can see exactly which recipe produced your best results."
     },
     {
-      "title": "End-to-End Auth with Supabase + RLS",
-      "description": "Email/password auth via Supabase, JWT forwarded through the FastAPI backend, and row-level security policies on every table so users only ever see their own data."
+      "title": "Personalized Insights",
+      "description": "Week, month and year views surface your favorite method, best bean, peak brewing day, cups-per-day chart, rating trend and top flavours."
     },
     {
-      "title": "Figma-Driven Visual Design",
-      "description": "Full design system — sage green primary, warm beige background, dark coffee accents, generous radii — translated from a multi-screen Figma file into a reusable React Native theme and component library."
+      "title": "Brew Streaks & Stats",
+      "description": "A day-streak counter and headline stats (average rating, total brews, beans owned) computed in-database keep your ritual visible at a glance."
+    },
+    {
+      "title": "Grinders & Methods",
+      "description": "Reusable grinders and brew methods — global defaults plus your own — remember your last-used setup so logging is fast."
+    },
+    {
+      "title": "Secure Per-User Data",
+      "description": "Email/password auth and Postgres row-level security ensure every user only ever sees and edits their own coffees, bags and brews."
     }
   ],
   "challenges": [
     {
-      "title": "Choosing the Right Backend Pattern",
-      "description": "Iterated between a service-role backend that verifies JWTs itself and a thin proxy that forwards the user's token and lets Supabase RLS do the work. Landed on the proxy pattern — simpler, more secure, and lets the database stay the single source of truth for authorization."
+      "title": "Modeling a Brew Recipe",
+      "description": "A single brew isn't one record — it's a recipe with an ordered set of pour phases, linked to a bean and a specific bag. Designing relational tables that captured this without making logging tedious took several iterations."
     },
     {
-      "title": "Designing the Data Model for Live Inventory",
-      "description": "Coffees, brews, and profiles needed schemas that supported automatic weight decrement on each brew, per-user filtering, and computed aggregates — without leaking data across users or requiring expensive queries on every screen load."
+      "title": "Retiring the FastAPI Backend",
+      "description": "The app originally talked to a standalone FastAPI server. Migrating to direct Supabase access meant reimplementing bag aggregates and user stats as in-database SQL views and RPCs while keeping the client contract identical."
     },
     {
-      "title": "Cross-Platform Layout from a Static Design",
-      "description": "Translating fixed-frame Figma layouts into responsive React Native components — handling status-bar insets, scroll behaviours (e.g. the Home greeting scrolling with the page), and rounded hero corners — while keeping the visual identity intact on both iOS and Android."
+      "title": "Row-Level Security",
+      "description": "Every table, view and function had to be scoped to auth.uid() so users can never read or write another person's data — including getting security_invoker views and SECURITY INVOKER functions right so RLS isn't accidentally bypassed."
     },
     {
-      "title": "Local + LAN Development Setup",
-      "description": "Wiring Expo Go on a physical phone to a FastAPI backend running on the Mac required reasoning about LAN IPs, uvicorn host binding, and Expo's environment-variable lifecycle — and documenting the gotchas so future dev sessions don't re-discover them."
+      "title": "Computing Streaks in SQL",
+      "description": "Calculating a consecutive-day brewing streak entirely in Postgres — handling gaps, today-vs-yesterday edges and time zones — was a fun window-function challenge."
     },
     {
-      "title": "Server State Management on Mobile",
-      "description": "Coordinating React Query caches across screens so that logging a brew on one tab refreshes stats, inventory, and recent activity everywhere else — without manual refresh and without redundant network calls."
+      "title": "Server State with React Query",
+      "description": "Keeping the bean cellar, brew list and stats in sync after every mutation required careful query-key design and cache invalidation so the UI always reflected the latest data."
+    },
+    {
+      "title": "An Editorial Native UI",
+      "description": "Building a distinctive serif-and-sage aesthetic in React Native — custom fonts, an immersive gradient hero, hairline dividers and hand-drawn SVG charts — while keeping it fast and native-feeling."
     }
   ],
   "techStacks": [
     {
-      "name": "React Native + Expo",
-      "description": "Cross-platform mobile runtime; managed workflow keeps iteration fast and supports physical-device testing via Expo Go."
+      "name": "React Native",
+      "description": "The cross-platform framework powering the native iOS and Android client with a single TypeScript codebase."
+    },
+    {
+      "name": "Expo",
+      "description": "Tooling and runtime for building, running and shipping the app, including font loading and native modules."
     },
     {
       "name": "TypeScript",
-      "description": "End-to-end type safety from API client through screens, with strongly typed navigation params for every route."
+      "description": "Provides end-to-end type safety from the Supabase table shapes through to every screen and component."
     },
     {
-      "name": "React Navigation",
-      "description": "Native-stack for auth flow and bottom tabs for the main app, with nested stacks for Coffee and Brew that support modal presentation."
+      "name": "Supabase",
+      "description": "Backend platform providing authentication and a hosted Postgres database accessed directly from the app."
+    },
+    {
+      "name": "PostgreSQL",
+      "description": "Stores all data and computes bag aggregates, user stats and brew streaks via SQL views and RPC functions, secured by row-level security."
     },
     {
       "name": "React Query",
-      "description": "Server state, caching, and invalidation — mutations on brew/coffee actions reactively refresh stats and inventory without manual refetches."
-    },
-    {
-      "name": "FastAPI",
-      "description": "Python backend exposing /me, /coffees, /brews, and /stats; acts as a thin proxy that forwards user JWTs to Supabase and computes aggregates server-side."
-    },
-    {
-      "name": "Supabase (Postgres + Auth + RLS)",
-      "description": "Auth, database, and authorization. Row-level security policies on every table guarantee per-user data isolation regardless of which client makes the call."
-    },
-    {
-      "name": "Figma",
-      "description": "Source of truth for the visual design system — colours, typography, spacing, and per-screen layouts, translated into a reusable RN theme and component library."
+      "description": "Manages all server state — caching, background refetching and cache invalidation after mutations — for a snappy, always-fresh UI."
     }
   ]
 }

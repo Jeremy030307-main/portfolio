@@ -1,10 +1,13 @@
 import { Link, useParams } from 'react-router-dom';
 import './project-detail.css';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { slugOf } from '../utils/slug';
+import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from '../utils/gsap-setup';
 
 const ProjectDetail = () => {
   const { projectName } = useParams();
+  const galleryRef = useRef(null);
+  const trackRef = useRef(null);
   const [projectData, setProjectData] = useState(null);
   const [meta, setMeta] = useState(null);
   const [nextProject, setNextProject] = useState(null);
@@ -62,6 +65,79 @@ const ProjectDetail = () => {
     return () => observer.disconnect();
   }, [projectData]);
 
+  // Pin the preview section and convert vertical scroll into horizontal
+  // movement of the strip (App Store "scroll-jacked" gallery). Only on wider
+  // screens / non-reduced-motion; mobile keeps a normal vertical stack.
+  useGSAP(
+    () => {
+      const section = galleryRef.current;
+      const track = trackRef.current;
+      if (!section || !track || prefersReducedMotion()) return;
+
+      const mm = gsap.matchMedia();
+      mm.add('(min-width: 768px)', () => {
+        // Real content width = sum of every tile + the gaps between them.
+        // We compute it ourselves rather than rely on scrollWidth, which a
+        // constrained parent can cap to the column width.
+        const contentWidth = () => {
+          const tiles = [...track.children];
+          if (!tiles.length) return 0;
+          const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+          const tilesW = tiles.reduce((sum, t) => sum + t.getBoundingClientRect().width, 0);
+          return tilesW + gap * (tiles.length - 1);
+        };
+        // How far the strip must travel left so its right edge reaches the
+        // viewport's right edge.
+        const distance = () => Math.max(0, contentWidth() - track.parentElement.clientWidth);
+
+        // Wrap the preview + every section after it into one block, then pin
+        // the block. The whole lower page stays frozen on screen and moves as
+        // one unit while the strip scrolls sideways, then releases together so
+        // normal scrolling resumes.
+        const parent = section.parentNode;
+        const following = [];
+        for (let el = section; el; el = el.nextElementSibling) following.push(el);
+        const block = document.createElement('div');
+        block.className = 'pd-pinblock';
+        parent.insertBefore(block, section);
+        following.forEach((el) => block.appendChild(el));
+
+        gsap.to(track, {
+          x: () => -distance(),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: block,
+            start: 'top top',
+            end: () => '+=' + distance(),
+            pin: true,
+            pinSpacing: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            scrub: true,
+          },
+        });
+
+        // Images have no width until they load — recompute once each lands.
+        const imgs = track.querySelectorAll('img');
+        imgs.forEach((img) => {
+          if (!img.complete) {
+            img.addEventListener('load', ScrollTrigger.refresh, { once: true });
+          }
+        });
+
+        // Unwrap on cleanup so the DOM returns to its original structure.
+        return () => {
+          const host = block.parentNode;
+          if (!host) return;
+          following.forEach((el) => host.insertBefore(el, block));
+          host.removeChild(block);
+        };
+      });
+      return () => mm.revert();
+    },
+    { dependencies: [projectData, projectName], revertOnUpdate: true }
+  );
+
   if (error)
     return (
       <div className="pd-shell" role="alert">
@@ -75,7 +151,6 @@ const ProjectDetail = () => {
     summary,
     overview,
     technologies,
-    thumbnail,
     keyFeatures = [],
     challenges = [],
     architecture,
@@ -91,8 +166,13 @@ const ProjectDetail = () => {
   const archFlow = architecture?.flow || [];
   const archExternal = architecture?.external || [];
   const hasArchitecture = archFlow.length > 0;
+  // One horizontal row: pipeline nodes followed by external services (flagged
+  // so they render with the trailing dashed style), matching the design.
+  const archNodes = [
+    ...archFlow,
+    ...archExternal.map((ext) => ({ ...ext, external: true })),
+  ];
 
-  const hasDemo = Boolean(demo);
   const hasProblem = Boolean(problem || solution);
   const hasProcess = process.length > 0;
 
@@ -109,20 +189,23 @@ const ProjectDetail = () => {
 
   // Screens = the dedicated `screens` array, falling back to any key features
   // that carry a screenshot (older data shape). Normalised to { image, caption }.
+  // Entries without an image are kept as captioned placeholder phones — the
+  // gallery shows the device frame so the layout reads before shots land.
   const screens = (
     Array.isArray(screensData) && screensData.length
-      ? screensData.map((s) => ({ image: s.image || s.gif, caption: s.caption || s.title }))
+      ? screensData.map((s) => ({ image: s.image || s.gif || '', caption: s.caption || s.title }))
       : keyFeatures
           .filter((f) => f.gif)
           .map((f) => ({ image: f.gif, caption: f.title }))
-  )
-    .filter((s) => s.image)
-    .slice(0, 3);
+  ).filter((s) => s.image || s.caption);
+
+  // App Store pattern: the demo video and the screenshots live in one
+  // swipeable Preview gallery — the demo phone is the first tile.
+  const hasGallery = Boolean(demo) || screens.length > 0;
 
   const toc = [
     { id: 'overview', label: 'Overview' },
-    hasDemo && { id: 'demo', label: 'Demo' },
-    screens.length && { id: 'screens', label: 'Screens' },
+    hasGallery && { id: 'gallery', label: 'Preview' },
     hasProblem && { id: 'problem', label: 'Problem' },
     hasProcess && { id: 'process', label: 'Process' },
     keyFeatures.length && { id: 'features', label: 'Features' },
@@ -210,95 +293,97 @@ const ProjectDetail = () => {
 
         {/* ---------- content column ---------- */}
         <div className="pd-content">
-          {/* hero band (green) */}
-          <section className="pd-band pd-band-green">
+          {/* hero + overview band (green) — App Store style: title, tagline
+              and stack chips lead, with the overview prose in the same band */}
+          <section id="overview" data-section="overview" className="pd-band pd-band-green">
             <div className="pd-hero">
-              <div className="pd-hero-text">
-                <h1 className="pd-title">{title}</h1>
-                {tagline && <p className="pd-tagline">{tagline}</p>}
-                {technologies && (
-                  <div className="pd-chips">
-                    {technologies.split(',').map((t) => (
-                      <span key={t.trim()} className="pd-chip">
-                        {t.trim()}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-              {thumbnail && (
-                <div className="pd-hero-shot">
-                  <img src={thumbnail} alt={`${title} preview`} />
+              <h1 className="pd-title">{title}</h1>
+              {tagline && <p className="pd-tagline">{tagline}</p>}
+              {technologies && (
+                <div className="pd-chips">
+                  {technologies.split(',').map((t) => (
+                    <span key={t.trim()} className="pd-chip">
+                      {t.trim()}
+                    </span>
+                  ))}
                 </div>
               )}
             </div>
+            {(overview || summary) && (
+              <p className="pd-prose pd-hero-overview" style={{ whiteSpace: 'pre-line' }}>
+                {overview || summary}
+              </p>
+            )}
           </section>
 
-          {/* overview */}
-          <section id="overview" data-section="overview" className="pd-section">
-            <div className="pd-kicker">{num('overview')} · Overview</div>
-            <p className="pd-prose" style={{ whiteSpace: 'pre-line' }}>
-              {overview || summary}
-            </p>
-          </section>
+          {/* preview — App Store media strip: the demo video phone first, then
+              the screenshots, all in matching iOS device frames. The section is
+              pinned and vertical scroll drives the strip horizontally (GSAP). */}
+          {hasGallery && (
+            <section
+              id="gallery"
+              data-section="gallery"
+              className="pd-section pd-gallery-section"
+              ref={galleryRef}
+            >
+              <div className="pd-kicker">{num('gallery')} · Preview</div>
+              <h2 className="pd-h">Demo &amp; screens</h2>
+              {demo?.body && (
+                <p className="pd-prose pd-gallery-lead">{demo.body}</p>
+              )}
+              <div className="pd-gallery-viewport">
+                <div className="pd-gallery" ref={trackRef}>
+                {demo && (
+                  <figure className="pd-gtile pd-gtile-video">
+                    <div className="pd-phone-frame">
+                      <span className="pd-notch" aria-hidden="true" />
+                      {demo.video ? (
+                        <video
+                          className="pd-demo-video"
+                          src={demo.video}
+                          poster={demo.poster}
+                          controls
+                          playsInline
+                          loop
+                          muted
+                        />
+                      ) : (
+                        <div className="pd-demo-video is-empty">
+                          <span className="pd-demo-play" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M8 5.5v13l11-6.5z" />
+                            </svg>
+                          </span>
+                          <span className="pd-demo-hint">app demo — coming soon</span>
+                        </div>
+                      )}
+                    </div>
+                    <figcaption>
+                      &#9654; {demo.heading || '60-second walkthrough'}
+                    </figcaption>
+                  </figure>
+                )}
 
-          {/* demo — video walkthrough in an iOS phone frame */}
-          {hasDemo && (
-            <section id="demo" data-section="demo" className="pd-section">
-              <div className="pd-kicker">{num('demo')} · See it in motion</div>
-              <div className="pd-demo-grid">
-                <div className="pd-demo-copy">
-                  <h2 className="pd-h">{demo.heading || 'A walkthrough'}</h2>
-                  {demo.body && <p className="pd-prose">{demo.body}</p>}
-                  {Array.isArray(demo.points) && demo.points.length > 0 && (
-                    <ul className="pd-demo-points">
-                      {demo.points.map((point) => (
-                        <li key={point}>{point}</li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-                <div className="pd-demo-stage">
-                  <div className="pd-phone-frame">
-                    <span className="pd-notch" aria-hidden="true" />
-                    {demo.video ? (
-                      <video
-                        className="pd-demo-video"
-                        src={demo.video}
-                        poster={demo.poster}
-                        controls
-                        playsInline
-                        loop
-                        muted
-                      />
-                    ) : (
-                      <div className="pd-demo-video is-empty">
-                        <span className="pd-demo-play" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M8 5.5v13l11-6.5z" />
-                          </svg>
-                        </span>
-                        <span className="pd-demo-hint">app demo — coming soon</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </section>
-          )}
-
-          {/* screens (app screenshots) */}
-          {screens.length > 0 && (
-            <section id="screens" data-section="screens" className="pd-section">
-              <div className="pd-kicker">{num('screens')} · In the app</div>
-              <h2 className="pd-h">Screens</h2>
-              <div className="pd-screens">
                 {screens.map((s) => (
-                  <figure key={s.image} className="pd-phone">
-                    <img src={s.image} alt={s.caption ? `${s.caption} screen` : `${title} screen`} />
+                  <figure key={s.caption || s.image} className="pd-gtile">
+                    <div className="pd-phone-frame">
+                      <span className="pd-notch" aria-hidden="true" />
+                      {s.image ? (
+                        <img
+                          className="pd-gscreen"
+                          src={s.image}
+                          alt={s.caption ? `${s.caption} screen` : `${title} screen`}
+                        />
+                      ) : (
+                        <div className="pd-gscreen is-empty">
+                          <span className="pd-gscreen-label">{s.caption || 'Screen'}</span>
+                        </div>
+                      )}
+                    </div>
                     {s.caption && <figcaption>{s.caption}</figcaption>}
                   </figure>
                 ))}
+                </div>
               </div>
             </section>
           )}
@@ -369,31 +454,21 @@ const ProjectDetail = () => {
               {architecture.summary && <p className="pd-arch-summary">{architecture.summary}</p>}
 
               <div className="pd-diagram">
-                {/* main pipeline: client → cache → cloud */}
+                {/* single horizontal flow: pipeline nodes then any external
+                    services as the trailing (dashed) boxes — all in one row,
+                    separated by ⇄, exactly like the design */}
                 <div className="pd-flow">
-                  {archFlow.map((node, i) => {
-                    const isLast = i === archFlow.length - 1;
+                  {archNodes.map((node, i) => {
+                    const isLast = i === archNodes.length - 1;
                     return (
                       <Fragment key={node.label}>
-                        <div className="pd-flow-cell">
-                          <div className={`pd-node pd-node-${node.role || 'default'}`}>
-                            <span className="pd-node-label">{node.label}</span>
-                            {node.sub && <span className="pd-node-sub">{node.sub}</span>}
-                          </div>
-
-                          {/* external services hang straight off the last node */}
-                          {isLast && archExternal.length > 0 && (
-                            <div className="pd-branch">
-                              <span className="pd-branch-drop" aria-hidden="true" />
-                              <span className="pd-branch-label">external</span>
-                              {archExternal.map((ext) => (
-                                <div key={ext.label} className="pd-node pd-node-external">
-                                  <span className="pd-node-label">{ext.label}</span>
-                                  {ext.sub && <span className="pd-node-sub">{ext.sub}</span>}
-                                </div>
-                              ))}
-                            </div>
-                          )}
+                        <div
+                          className={`pd-node pd-node-${
+                            node.external ? 'external' : node.role || 'default'
+                          }`}
+                        >
+                          <span className="pd-node-label">{node.label}</span>
+                          {node.sub && <span className="pd-node-sub">{node.sub}</span>}
                         </div>
 
                         {!isLast && (

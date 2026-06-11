@@ -12,10 +12,10 @@
     "slug": "brewey",
     "image": "https://i.imgur.com/8z6TOvW.png",
     "title": "Brewey",
-    "tagline": "Coffee tracker · React Native + FastAPI",
+    "tagline": "Coffee brewing tracker for home baristas",
     "year": "2025",
-    "description": "A coffee tracking mobile app and FastAPI backend that lets specialty coffee drinkers catalogue their bean inventory, log brew recipes (V60, AeroPress, Espresso, etc.), and watch personal stats — day streak, average rating, coffees owned — grow over time. Designed end-to-end in Figma and built as a cross-platform React Native app backed by Supabase.",
-    "skillset": "React Native, Expo, TypeScript, FastAPI, Python, Supabase (Postgres + Auth + RLS), React Navigation, React Query, Figma"
+    "description": "A native mobile app that turns coffee brewing into a craft you can measure. Log every pour-over with multi-phase recipes, manage your bean cellar bag by bag, and watch personalized insights reveal your favorite methods, peak brew days, and how your ratings trend over time.",
+    "skillset": "React Native, Expo, TypeScript, Supabase"
   },
   {
     "slug": "ecostyle",

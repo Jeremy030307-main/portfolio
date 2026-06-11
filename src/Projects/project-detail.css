@@ -183,14 +183,8 @@
   color: #9d9a92;
 }
 
-/* ---------- hero ---------- */
+/* ---------- hero (App Store style: title + tagline + stack chips) ---------- */
 .pd-hero {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 28px;
-  align-items: center;
-}
-.pd-hero-text {
   min-width: 0;
 }
 .pd-title {
@@ -222,17 +216,11 @@
   background: var(--bg);
   color: var(--text);
 }
-.pd-hero-shot {
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--surface);
-}
-.pd-hero-shot img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-height: 260px;
-  object-fit: cover;
+.pd-hero-overview {
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1.5px solid color-mix(in srgb, var(--green) 22%, transparent);
+  color: var(--text);
 }
 
 /* ---------- features grid ---------- */
@@ -260,77 +248,131 @@
   margin: 0;
 }
 
-/* ---------- demo (video walkthrough in an iOS phone frame) ---------- */
-.pd-demo-grid {
-  display: grid;
-  grid-template-columns: 1.02fr 0.98fr;
-  gap: 42px;
-  align-items: center;
+/* ---------- preview (App Store media strip) ----------
+   A horizontal, scroll-snapping gallery: the demo video phone is the first
+   tile, then the screenshots — all in matching iOS device frames. */
+.pd-gallery-lead {
+  margin: -4px 0 22px;
+  max-width: 52ch;
 }
-.pd-demo-copy .pd-h {
-  margin-bottom: 14px;
-}
-.pd-demo-copy .pd-prose {
-  margin: 0 0 20px;
-  max-width: 42ch;
-}
-.pd-demo-points {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* The preview + the section after it are wrapped in this block at runtime
+   and pinned together, so both stay frozen on screen while the strip scrolls
+   horizontally (GSAP), then release as one. */
+.pd-pinblock {
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 34px;
+  background: var(--bg);
 }
-.pd-demo-points li {
-  position: relative;
-  padding-left: 22px;
-  font-size: 15px;
-  color: var(--text);
+.pd-gallery-section {
+  overflow: hidden;
 }
-.pd-demo-points li::before {
-  content: '';
-  position: absolute;
-  left: 1px;
-  top: 8px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--green);
+/* viewport clips the over-wide track — no native horizontal scrollbar */
+.pd-gallery-viewport {
+  overflow: hidden;
+  margin: 0 -2px;
 }
-.pd-demo-stage {
+.pd-gallery {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 22px;
+  padding: 6px 2px 18px;
+  will-change: transform;
 }
+
+/* Mobile: GSAP scroll-jacking is disabled, so fall back to a normal
+   vertical stack instead of an unreachable off-screen strip. */
+@media (max-width: 767px) {
+  .pd-gallery-section {
+    overflow: visible;
+  }
+  .pd-gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: none !important;
+  }
+}
+.pd-gtile {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+}
+.pd-gtile figcaption {
+  font-size: 12.5px;
+  color: var(--faint);
+  text-align: center;
+}
+.pd-gtile-video figcaption {
+  color: var(--green);
+  font-weight: 700;
+}
+
+/* device frame — iPhone 17: thin uniform bezel, large corner radius,
+   Dynamic Island. Sized for the strip so every tile aligns. */
 .pd-phone-frame {
   position: relative;
-  flex: none;
   box-sizing: border-box;
-  width: 250px;
-  height: auto;
-  background: #111110;
-  border: 1px solid #2c2b27;
-  border-radius: 44px;
-  padding: 11px;
-  box-shadow: 0 30px 56px -26px rgba(0, 0, 0, 0.55);
+  width: 216px;
+  background: #0a0a09;
+  border: 1px solid #34332e;
+  border-radius: 46px;
+  padding: 6px;
+  box-shadow:
+    inset 0 0 0 1.5px #1c1b18,
+    0 30px 56px -26px rgba(0, 0, 0, 0.6);
 }
+/* Dynamic Island — a floating pill below the top edge */
 .pd-notch {
   position: absolute;
-  top: 11px;
+  top: 14px;
   left: 50%;
   transform: translateX(-50%);
-  width: 96px;
-  height: 22px;
-  background: #111110;
-  border-radius: 0 0 15px 15px;
+  width: 64px;
+  height: 18px;
+  background: #000;
+  border-radius: 20px;
   z-index: 2;
 }
+
+/* screenshot inside a frame */
+.pd-gscreen {
+  display: block;
+  width: 100%;
+  height: 442px;
+  border-radius: 40px;
+  object-fit: cover;
+  background: #0d0d0c;
+}
+.pd-gscreen.is-empty {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 22px;
+  text-align: center;
+  background: repeating-linear-gradient(
+    135deg,
+    #1a1a18 0,
+    #1a1a18 11px,
+    #212019 11px,
+    #212019 22px
+  );
+}
+.pd-gscreen-label {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: #b6b3a8;
+}
+
+/* demo video inside the first frame */
 .pd-demo-video {
   position: relative;
   width: 100%;
-  aspect-ratio: 9 / 19;
-  border-radius: 33px;
+  height: 442px;
+  border-radius: 40px;
   overflow: hidden;
   background: #0d0d0c;
   display: flex;
@@ -453,35 +495,30 @@ video.pd-demo-video {
   margin-top: 4px;
 }
 
-/* main pipeline: equal-width cells, arrow centered in the gap */
+/* single horizontal row: equal-width nodes, arrow centered between them */
 .pd-flow {
   display: flex;
-  align-items: flex-start;
-}
-.pd-flow-cell {
-  flex: 1 1 0;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
+  align-items: stretch;
 }
 .pd-flow-arrow {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  align-self: flex-start;
-  width: 44px;
-  height: 64px; /* matches a node's height so the arrow lines up with the boxes */
+  padding: 0 6px;
   font-size: 20px;
   color: var(--green);
   line-height: 1;
 }
 
 .pd-node {
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 4px;
   justify-content: center;
+  text-align: center;
   padding: 16px 18px;
   border-radius: 10px;
   border: 1.5px solid #45433d;
@@ -514,58 +551,6 @@ video.pd-demo-video {
   border-style: dashed;
   border-color: #5a574f;
   background: transparent;
-}
-
-/* external services hang straight down off the last pipeline node */
-.pd-branch {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 30px;
-}
-/* a straight vertical dashed drop from the node above into the first external box */
-.pd-branch-drop {
-  position: absolute;
-  top: -30px;
-  left: 28px;
-  width: 0;
-  height: 30px;
-  border-left: 1.5px dashed #5a574f;
-  pointer-events: none;
-}
-.pd-branch-label {
-  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #6f6d65;
-  margin-bottom: -2px;
-}
-
-/* ---------- screens ---------- */
-.pd-screens {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-.pd-phone {
-  margin: 0;
-  border: 1.6px solid var(--border-strong);
-  border-radius: 20px;
-  padding: 8px;
-  background: var(--surface);
-}
-.pd-phone img {
-  display: block;
-  width: 100%;
-  border-radius: 13px;
-}
-.pd-phone figcaption {
-  font-size: 12px;
-  color: var(--text-secondary);
-  text-align: center;
-  padding: 8px 4px 2px;
 }
 
 /* ---------- learnings ---------- */
@@ -649,20 +634,10 @@ video.pd-demo-video {
   .pd-nextproj {
     flex-basis: 100%;
   }
-  .pd-hero {
-    grid-template-columns: 1fr;
-  }
-  .pd-hero-shot img {
-    max-height: none;
-  }
   .pd-feature-grid,
   .pd-learn-grid,
-  .pd-demo-grid,
   .pd-duo {
     grid-template-columns: 1fr;
-  }
-  .pd-demo-grid {
-    gap: 30px;
   }
   .pd-proc {
     grid-template-columns: 1fr 1fr;
@@ -670,9 +645,6 @@ video.pd-demo-video {
   }
   .pd-step::before {
     display: none;
-  }
-  .pd-screens {
-    grid-template-columns: 1fr 1fr;
   }
 
   /* pipeline stacks vertically; arrows rotate to point down */
@@ -688,9 +660,6 @@ video.pd-demo-video {
 }
 
 @media (max-width: 520px) {
-  .pd-screens {
-    grid-template-columns: 1fr;
-  }
   .pd-proc {
     grid-template-columns: 1fr;
   }

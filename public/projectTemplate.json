@@ -1,0 +1,59 @@
+{
+  "id": "1",
+  "title": "Roam",                          
+  "summary": "One-line/short blurb. Used as fallback for Overview if overview is empty.",
+  "overview": "Full overview prose.\n\nUse \\n\\n for paragraph breaks — they render as separate paragraphs.",
+  "technologies": "Swift, Firebase, UIKit, CoreData, Yelp API",  
+
+  "githubLink": "https://github.com/you/repo",
+//   "githubLinks": [
+//     { "url": "https://github.com/you/frontend", "label": "Frontend" },
+//     { "url": "https://github.com/you/backend",  "label": "Backend" }
+//   ],
+  "liveDemoLink": "https://your-live-app.com",  
+
+  "thumbnail": "https://i.imgur.com/xxxx.png",   
+
+  "demo": {
+    "heading": "A 60-second walkthrough",
+    "body": "Short paragraph describing the demo.",
+    "points": [
+      "Bullet highlight one",
+      "Bullet highlight two",
+      "Bullet highlight three"
+    ],
+    "video": "",       
+    "poster": ""        
+  },
+
+  "problem": "What was broken / hard before this project.",
+  "solution": "How this project solves it.",  
+
+  "process": [
+    { "title": "Map the journey",     "description": "Short step description." },
+    { "title": "Model the data",      "description": "Short step description." },
+    { "title": "Build offline-first", "description": "Short step description." },
+    { "title": "Polish the UI",       "description": "Short step description." }
+  ],
+
+  "keyFeatures": [
+    { "title": "Feature name", "description": "What it does.", "gif": "https://.../shot.png" },
+    { "title": "Feature name", "description": "What it does." }
+  ],
+
+  "architecture": {
+    "summary": "One-line description of how the pieces fit.",
+    "flow": [  
+      { "label": "UIKit Client", "sub": "iOS app · Swift", "role": "client" },
+      { "label": "CoreData",     "sub": "Offline cache",   "role": "cache"  },
+      { "label": "Firebase",     "sub": "Auth + Firestore","role": "cloud"  }
+    ],
+    "external": [  
+      { "label": "Yelp API", "sub": "Place discovery" }
+    ]
+  },
+
+  "challenges": [
+    { "title": "What I learned", "description": "Reflection." }
+  ]
+}

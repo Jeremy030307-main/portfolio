@@ -8,7 +8,7 @@
   "skillset": "Swift, Firebase, UIKit, CoreData",
   "description": "An intuitive travel planning app that lets users create, edit, and share personalized itineraries. From organizing destinations and timing in a calendar-like view to tracking trip expenses and discovering plans from other travelers, ROAM makes travel prep smart, flexible, and collaborative.",
   "id": "1",
-  "overview": "Planning a trip often involves juggling multiple apps for itineraries, budgets, saved locations, and travel notes. Roam was built to simplify that experience by bringing everything into a single native iOS application. \n\nRoam helps travelers organize trips, create day-by-day itineraries, track expenses, discover nearby attractions, and keep important travel information accessible even when offline. The goal was to create a streamlined travel planning experience that reduces the friction between researching, planning, and managing a trip.\n\nBeyond building a functional travel application, this project also served as an opportunity to deepen my understanding of iOS development, Firebase services, local data persistence, and API integration.",
+  "overview": "Plot your path, then roam free, one offline-ready iOS app for the whole trip.",
   "technologies": "Swift, Firebase, UIKit, CoreData, Yelp API",
   "thumbnail": "https://i.imgur.com/6A8kkv3.png",
   "githubLink": "https://github.com/Jeremy030307-main/Roam",
@@ -20,7 +20,7 @@
       "Running expense totals by category",
       "Fully usable with no signal"
     ],
-    "video": "",
+    "video": "/Demo/roam.mp4",
     "poster": ""
   },
   "problem": "Planning a trip means juggling notes, maps, a spreadsheet and a stack of booking apps — and none of it works the moment you lose signal on the road.",
@@ -44,9 +44,11 @@
     }
   ],
   "screens": [
-    { "image": "", "caption": "Day-by-day itinerary" },
-    { "image": "", "caption": "Expense tracking" },
-    { "image": "", "caption": "Saved places & discovery" }
+    { "image": "https://i.imgur.com/FKUSfOg.png", "caption": "Trip Creation and Management" },
+    { "image": "https://i.imgur.com/ERZV4af.png", "caption": "Day-by-day itinerary" },
+    { "image": "https://i.imgur.com/BmWSFWX.png", "caption": "Expense tracking" },
+    { "image": "https://i.imgur.com/BsrtUXJ.png", "caption": "Checklist" },
+    { "image": "https://i.imgur.com/TyXBo1H.png", "caption": "User Post and guide" }
   ],
 
   "architecture": {
